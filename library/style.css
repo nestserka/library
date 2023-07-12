@@ -6,24 +6,90 @@ html {
     scroll-behavior: smooth;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+	font-family: forum;
+	src: url(../library/fonts/Forum-Regular.ttf);
+	font-weight: 900;
+}
+
+@font-face {
+	font-family: intel-bold;
+	src: url(../library/fonts/Inter-Bold.ttf);
+	font-weight: 900;
+}
+
+@font-face {
+	font-family: intel-regular;
+	src: url(../library/fonts/Inter-Regular.ttf);
+	font-weight: 900;
+}
+
 header {
     background-color: #0C0C0E;
     overflow: hidden; 
     height: 90px;
-    font-family: 'Inter', sans-serif;
+    font-family:intel-regular;
     color:#FFFFFF;
+}
+
+h1 {
+    font-family: forum;
+    font-size: 30px;
+    line-height: 50px;
+    margin:0;
+    letter-spacing:0.02em;
+    
 }
 
 .wrapper {
     max-width: 1440px;
     margin: 0 auto;
-    padding:20px, 20px, 0, 20px;
+    padding-left:20px;
+    padding-right:20px;
 }
 
-.nav-list {
+.container-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:0;
+    height:90px;
+    padding:0;
+}
+
+.container-header a{
+    padding-top:5px;
+}
+
+.nav{
+    flex:1;
+}
+
+ .nav-list {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     list-style: none;
-  }
+    margin-right:40px;
+} 
 
+.nav-link {
+    margin: 0;
+    padding-top:0;
+    padding-left:30px;
+    line-height: 50px;
+    transition: 0.3s;
+    text-decoration: none;
+    color:#FFFFFF;
+    font-size: 20px;
+} 
+
+.nav-link:hover {
+    color: #a3a0a0;
+    font-family: intel-bold;
+}
