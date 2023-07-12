@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+header {
+    background-color: #0C0C0E;
+    overflow: hidden; 
+    height: 90px;
+    font-family: 'Inter', sans-serif;
+    color:#FFFFFF;
+}
+
+.wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding:20px, 20px, 0, 20px;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+  }
+
