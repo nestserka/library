@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    
     <title>Library project part 1</title>
 </head>
 <body>
@@ -71,89 +72,61 @@
             <div class="section-paragraph">
               <h3 class="section-paragraph">Pick favorites of season</h3>
           </div>
-          <div class="radio-buttons">
-            <input type="radio" id="winter" name="season" value="winter" checked>
-            <label for="winter">Winter</label>
-
-            <input type="radio" id="spring" name="spring" value="spring">
-            <label for="spring">Spring</label>
-
-            <input type="radio" id="summer" name="summer" value="summer">
-            <label for="summer">Summer</label>
-
-            <input type="radio" id="autumn" name="autumn" value="autumn">
-            <label for="autumn">Autumn</label>
+          <div class="container-season">
+            <div class="radio">
+              <input id="radio-1" name="radio" type="radio" checked>
+              <label for="radio-1" class="radio-label">Winter</label>
+            </div>
+            <div class="radio">
+              <input id="radio-2" name="radio" type="radio">
+              <label for="radio-2" class="radio-label">Spring</label>
+            </div>
+            <div class="radio">
+              <input id="radio-3" name="radio" type="radio">
+              <label for="radio-3" class="radio-label">Summer</label>
+            </div>
+            <div class="radio">
+              <input id="radio-4" name="radio" type="radio">
+              <label for="radio-4" class="radio-label">Autumn</label>
+            </div>
           </div>
-            </section>
-            <!-- <div class="books">
+           <div class="books">
               <div class="card">
-                <div class="lines"></div>
-                <div class="image-book">
                   <img src="assets/books/book_1.png" alt="book 1">
-                </div>
-                <div class="staff">
-                  <h3 class="staff-picks">Staff Picks</h3>
-                </div>
-                <div class="author">
-                  <h3 class="author">The Book Eaters <br><span> By Sunyi Dean </span></h3>
-                </div>
-                <div class="book-about-text">
-                  <h4>An unusual sci-fi story about a book eater woman who tries desperately to save her dangerous mind-eater son from tradition and certain death. Complete with dysfunctional family values, light Sapphic romance, and a strong, complex protagonist. Not for the faint of heart. </h4>
-                </div>
+                <h3 class="staff-picks">Staff Picks</h3>
+                <hr>
+                  <h4 class="author">The Book Eaters <br><span> By Sunyi Dean </span></h4>
+                  <h5>An unusual sci-fi story about a book eater woman who tries desperately to save her dangerous mind-eater son from tradition and certain death. Complete with dysfunctional family values, light Sapphic romance, and a strong, complex protagonist. Not for the faint of heart. </h5>
                 <div class="action-button">
                   <button class="buy" type="button">Buy</button>
                 </div>
               </div>
               <div class="card">
-                <div class="lines"></div>
-                <div class="image-book">
                   <img src="assets/books/book_2.png" alt="book 2">
-                </div>
-                <div class="staff">
                   <h3 class="staff-picks">Staff Picks</h3>
-                </div>
-                <div class="author">
-                  <h3 class="author">Cackle <br><span>By Rachel Harrison</span></h3>
-                </div>
-                <div class="book-about-text">
-                  <h4>Are your Halloween movies of choice The Witches of Eastwick and Practical Magic? Look no further than here - where a woman recovering from a breakup moves to a quaint town in upstate New York and befriends a beautiful witch.</h4>
-                </div>
+                  <hr>
+                  <h4 class="author">Cackle <br><span>By Rachel Harrison</span></h4>
+                  <h5>Are your Halloween movies of choice The Witches of Eastwick and Practical Magic? Look no further than here - where a woman recovering from a breakup moves to a quaint town in upstate New York and befriends a beautiful witch.</h5>
                 <div class="action-button">
                   <button class="buy" type="button">Buy</button>
                 </div>
               </div>
               <div class="card">
-                <div class="lines"></div>
-                <div class="image-book">
                   <img src="assets/books/book_3.png" alt="book 3">
-                </div>
-                <div class="staff">
                   <h3 class="staff-picks">Staff Picks</h3>
-                </div>
-                <div class="author">
-                  <h3 class="author"> Dante: Poet of the Secular World <br><span>By Rachel Harrison</span></h3>
-                </div>
-                <div class="book-about-text">
-                  <h4>Auerbach's engaging book places the 'Comedy' within the tradition of epic, tragedy, and philosophy in general, arguing for Dante's uniqueness as one who raised the individual and his drama of soul into something of divine significance—an inspired introduction to Dante's main themes.</h4>
-                </div>
+                  <hr>
+                  <h4 class="author"> Dante: Poet of the Secular World <br><span>By Rachel Harrison</span></h4>
+                  <h5>Auerbach's engaging book places the 'Comedy' within the tradition of epic, tragedy, and philosophy in general, arguing for Dante's uniqueness as one who raised the individual and his drama of soul into something of divine significance—an inspired introduction to Dante's main themes.</h5>
                 <div class="action-button">
                   <button class="buy" type="button">Buy</button>
                 </div>
               </div>
               <div class="card">
-                <div class="lines"></div>
-                <div class="image-book">
                   <img src="assets/books/book_4.png" alt="book 4">
-                </div>
-                <div class="staff">
                   <h3 class="staff-picks">Staff Picks</h3>
-                </div>
-                <div class="author">
-                  <h3 class="author">The Last Queen<br><span>By Clive Irving</span></h3>
-                </div>
-                <div class="book-about-text">
-                  <h4>A timely and revelatory new biography of Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as the modern world has changed around them.</h4>
-                </div>
+                  <hr>
+                  <h4 class="author">The Last Queen<br><span>By Clive Irving</span></h4>
+                  <h5>A timely and revelatory new biography of Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as the modern world has changed around them.</h5>
                 <div class="action-button">
                   <button class="owe" type="button"  disabled>Own</button>
                 </div>
