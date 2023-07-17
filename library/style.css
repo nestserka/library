@@ -434,7 +434,6 @@ section .section-title hr {
     display:flex;
     justify-content: space-between;
     height:520px;
-    margin-bottom:20px;
 } 
 
 .menu-cards:last-child{
@@ -458,9 +457,9 @@ section .section-title hr {
     justify-content: space-between;
     height:40px;
     margin-bottom:40px;
-  }
+}
   
-  .menu-food h5 {
+.menu-food h5 {
     font-size: 20px;
     letter-spacing: 2px;
     line-height: 40px;
@@ -468,7 +467,7 @@ section .section-title hr {
     width:215px;
   }
   
-  .menu-food hr {
+.menu-food hr {
     width: 100px;
     border: none;
     border-top: 1px solid #BB945F;
@@ -476,7 +475,7 @@ section .section-title hr {
     margin-left: 50px;
   }
   
-  .menu-food h6 {
+.menu-food h6 {
     font-family: forum;
     font-size: 20px;
     line-height: 40px;
@@ -487,3 +486,8 @@ section .section-title hr {
 }
 
 
+.section #contacts {
+    height:575px;
+    margin-top:20px;
+    margin-bottom: 20px;
+}
