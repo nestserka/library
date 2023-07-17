@@ -185,6 +185,14 @@ section .section-title hr {
     text-align: center;
 }
 
+.section-text-coffee h3{
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+}
+
 .about-images{
     display:flex;
     flex-direction:row;
@@ -421,3 +429,61 @@ section .section-title hr {
     bottom: 15px;
     cursor: default;
 }
+
+.menu{
+    display:flex;
+    justify-content: space-between;
+    height:520px;
+    margin-bottom:20px;
+} 
+
+.menu-cards:last-child{
+    text-align: end;
+}
+
+.menu-cards h4{
+    font-family: forum;
+    font-size: 40px;
+    line-height: 40px;
+    margin:0;
+    letter-spacing: 2px;
+    color:#BB945F;
+    margin-bottom:40px;
+}
+
+.menu-food {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height:40px;
+    margin-bottom:40px;
+  }
+  
+  .menu-food h5 {
+    font-size: 20px;
+    letter-spacing: 2px;
+    line-height: 40px;
+    color: #000000;
+    width:215px;
+  }
+  
+  .menu-food hr {
+    width: 100px;
+    border: none;
+    border-top: 1px solid #BB945F;
+    margin: 0;
+    margin-left: 50px;
+  }
+  
+  .menu-food h6 {
+    font-family: forum;
+    font-size: 20px;
+    line-height: 40px;
+    margin: 0;
+    letter-spacing: 2px;
+    margin-left:60px;
+    color: #000000;
+}
+
+
