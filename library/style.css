@@ -489,5 +489,66 @@ section .section-title hr {
 .section #contacts {
     height:575px;
     margin-top:20px;
-    margin-bottom: 20px;
+}
+
+.location-card {
+    margin-top:20px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height:414px;
+}
+
+.card-info img{
+    width:696px;
+    margin:0;
+}
+
+.card-info {
+    display:flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.card-info h3{
+    font-family: intel-bold;
+    font-size: 20px;
+    line-height: 40px;
+    margin: 0;
+    letter-spacing: 2px;
+    color: #000000;
+    text-transform: capitalize;
+    margin-bottom:40px;
+}
+
+.contant h4{
+    font-family: intel-bold;
+    font-size: 20px;
+    line-height: 40px;
+    margin-top: 40px;
+    letter-spacing: 2px;
+    color: #000000;
+    text-transform: capitalize;
+    padding:0;
+    margin-bottom:0;
+}
+
+.contant h5{
+    font-family: intel-regular;
+    font-size: 20px;
+    font-weight:400;
+    line-height: 40px;
+    letter-spacing: 2px;
+    color: #000000;
+    text-transform: capitalize;
+    padding:0;
+    margin:0;
+    margin-top:20px;
+}
+
+.telephone a {
+    text-decoration: none;
+    color:#000000;
+    margin:0;
+    padding:0;
 }
