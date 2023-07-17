@@ -485,7 +485,6 @@ section .section-title hr {
     color: #000000;
 }
 
-
 .section #contacts {
     height:575px;
     margin-top:20px;
@@ -497,6 +496,7 @@ section .section-title hr {
     flex-direction: row;
     justify-content: space-between;
     height:414px;
+    margin-bottom:20px;
 }
 
 .card-info img{
@@ -551,4 +551,146 @@ section .section-title hr {
     color:#000000;
     margin:0;
     padding:0;
+}
+
+section #librarycard{
+    height:614px;
+}
+
+.library-card-info{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.library-card-info:last-child{
+    text-align: end;
+}
+
+
+.user-card-info h3{
+    font-family: intel-regular;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: 0.02em;
+    text-align: center;
+    margin:0;
+    padding:0;
+}
+
+.input-field{
+    width:600px;
+    height:387px;
+    border: 1px solid #BB945F;
+    margin-top:30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: flex-start;
+}
+
+.login-form{
+    width:560px;
+    height:272px;
+    background-color: #BB945F;
+    margin:20px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap:20px;
+    padding:20px;
+}
+
+.login-form h5{
+    font-family: forum;
+    font-weight:400;
+    font-size:30px;
+    line-height: 50px;
+    margin:0;
+    padding:0;
+    letter-spacing: 0.02em;
+}
+
+.login-form input{
+    width:100%;
+    height:66px;
+    border-radius: 10px;
+    margin:0;
+    padding:0;
+}
+
+input::placeholder {
+    color: black;
+    font-family: forum;
+    font-weight:400;
+    font-size:30px;
+    line-height: 50px;
+    margin:0;
+    padding:0;
+    padding-left:20px;
+    letter-spacing: 0.02em;
+}
+
+.input-field button{
+    border: 1px solid #0C0C0E;
+    background-color: white;
+    text-align: center;
+    text-decoration: none;
+    font-family: intel-bold;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color:#0C0C0E;
+    padding: 10px 40px;
+    cursor: pointer;
+    transition: background-color 0.7s ease;
+    margin: 0;
+
+}
+
+.input-field button:hover{
+    background-color:#BB945F
+}
+
+.user-card-info h4{
+    color: black;
+    font-family: forum;
+    font-weight:400;
+    font-size:30px;
+    margin:0;
+    padding:0;
+    letter-spacing: 0.02em;
+    text-align: end;
+}
+
+.user-card-info h5{
+    font-family: intel-regular;
+    font-size:20px;
+    letter-spacing: 0.02em;
+    color: black;
+    line-height: 40px;
+    width:460px;
+    text-align: end;
+}
+
+.log-button{
+    display:flex;
+    flex-direction:row;
+    justify-content: end;
+    gap:20px;
+}
+
+.log-button button{
+    margin:0;
+    border: 1px solid #000000;
+    background-color: white;
+    text-align: center;
+    text-decoration: none;
+    font-family: intel-bold;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color:#000000;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.7s ease;
 }
