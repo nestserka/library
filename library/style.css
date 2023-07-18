@@ -836,7 +836,6 @@ input::placeholder {
     transition: all 0.4s ease-out;
 }
 
-
 .telephone a strong:hover {
     color:#BB945F;
 }
@@ -848,4 +847,4 @@ input::placeholder {
 .hidden-image, #card-hide, #card-hide-1,#card-hide-2, #card-hide-3,#card-hide-4,#card-hide-5,#card-hide-6,#card-hide-7,#card-hide-8,#card-hide-9,#card-hide-9,#card-hide-10,#card-hide-11,
 #card-hide-12 {
     display: none;
-  }
+}
