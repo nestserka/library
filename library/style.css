@@ -665,7 +665,8 @@ input::placeholder {
 }
 
 .input-field button:hover{
-    background-color:#BB945F
+    background-color:#BB945F;
+    border-color:#BB945F;
 }
 
 .user-card-info h4{
@@ -715,7 +716,8 @@ input::placeholder {
 }
 
 .log-button button:hover{
-    background-color:#BB945F
+    background-color:#BB945F;
+    border-color: #BB945F;
 }
 
 #coffeeshop{
@@ -817,13 +819,13 @@ input::placeholder {
     transition: all 0.4s ease-out;
 }
   
-
 .footer-item-list .school-link {
     margin-left: 50px; 
 }
 
 .footer-item-list a:hover, .location a:hover{
     color:#BB945F;
+    border-color: #BB945F;
 }
 
 .footer-item img:hover {
