@@ -198,6 +198,7 @@ section .section-title hr {
     flex-direction:row;
     justify-content: center;
     margin-bottom: 35px;
+    margin-left:20px;
 }
 
 .about-images > * {
