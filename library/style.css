@@ -11,6 +11,10 @@ body {
     padding: 0;
 }
 
+.open {	
+    display:flex !important;	
+}
+
 @font-face {
 	font-family: forum;
 	src: url(../library/fonts/Forum-Regular.ttf);
@@ -101,6 +105,47 @@ h1 {
     font-family: intel-bold;
 }
 
+.burger {	
+    display:none;	
+    position:relative;	
+    z-index:50;	
+    align-items:center;	
+    justify-content: flex-end;	
+    width:45px;	
+    height: 20px;	
+}	
+.burger span{	
+    height: 2px;	
+    width: 100%;	
+    transform:scale(1);	
+    background-color: #FAF6F2;	
+}	
+.burger::before, .burger::after{	
+    content:'';	
+    position:absolute;	
+    height:  2px;	
+    width: 100%;	
+    background-color: #FAF6F2;	
+    transition: all 0.3s ease 0s;	
+}	
+.burger::before {	
+    top: 0;	
+}	
+.burger::after {	
+    bottom: 0;	
+}	
+.burger.active span{	
+    transform:scale(0);	
+}	
+.burger.active::before{	
+    top:50%;	
+    transform: rotate(-45deg) translate(0, -50%);	
+}	
+.burger.active::after{	
+    bottom:50%;	
+    transform: rotate(45deg) translate(0, 50%);	
+}
+
 .section-welcome {
     position: relative;
     height: 600px;
@@ -187,6 +232,7 @@ section .section-title hr {
     text-align: center;
     font-family: intel-regular;
     font-weight: 300;
+    
 }
 
 .section-text-coffee h3{
@@ -203,16 +249,41 @@ section .section-title hr {
     display:flex;
     flex-direction:row;
     justify-content: flex-start;
+    gap:25px;
     margin-bottom: 35px;
-}
-
-.about-images > * {
-    margin-right: 25px; 
 }
 
 .about-images > *:last-child {
     margin-right: 0; 
 }
+
+.left-arrow, .right-arrow {	
+    display: none;	
+    width: 15px;	
+    height: 15px;	
+  }	
+  	
+  .left-arrow {	
+    border-top: 3px solid black;	
+    border-left: 3px solid black;	
+    transform: rotate(-45deg);	
+  }	
+  	
+  .right-arrow {	
+    border-top: 3px solid black;	
+    border-right: 3px solid black;	
+    transform: rotate(45deg);	
+  }	
+  	
+  .left-arrow:hover {	
+    border-top: 3px solid #BB945F;	
+    border-left: 3px solid #BB945F;	
+  }	
+  	
+  .right-arrow:hover {	
+    border-top: 3px solid #BB945F;	
+    border-right: 3px solid #BB945F;	
+  }
 
 .picture-radio-buttons {
     display: flex;
