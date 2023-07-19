@@ -119,9 +119,9 @@ h1 {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('assets/images/overlay.svg');
+    width:100%;
+    height: 50%;
+    background-image:  linear-gradient(180deg, #0C0C0E 0%, #0C0C0E 0.01%, rgba(18, 18, 21, 0.1) 100%);
     background-repeat: no-repeat;
     background-size: cover;
     z-index: 1;
@@ -132,7 +132,7 @@ h1 {
 }
 
 .welcome-container {
-    margin-top: 40px;
+    margin-top: 50px;
     padding: 0 40px;
     background-color: #0C0C0E;
     height: 220px;
@@ -185,6 +185,8 @@ section .section-title hr {
     font-size: 20px;
     line-height: 40px;
     text-align: center;
+    font-family: intel-regular;
+    font-weight: 300;
 }
 
 .section-text-coffee h3{
@@ -193,14 +195,15 @@ section .section-title hr {
     text-align: center;
     letter-spacing: 2px;
     margin-bottom: 40px;
+    font-weight:300;
+    font-family: intel-regular;
 }
 
 .about-images{
     display:flex;
     flex-direction:row;
-    justify-content: center;
+    justify-content: flex-start;
     margin-bottom: 35px;
-    margin-left:20px;
 }
 
 .about-images > * {
@@ -255,7 +258,13 @@ section .section-title hr {
 
   .section-paragraph h3{
     font-family: intel-bold;
-  }
+}
+
+.container-season {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
 
 .radio input[type="radio"] {
     position: absolute;
@@ -265,7 +274,8 @@ section .section-title hr {
 .radio{
     display: flex;
     align-items: center;
-    margin-right: 88px;
+    justify-content: flex-start;
+    margin-right: 90px;
     padding-bottom: 0.5em;
 }
 
@@ -276,6 +286,7 @@ section .section-title hr {
 
 .radio input[type="radio"]:checked + .radio-label {
     font-family: intel-bold;
+    font-size: 20px; 
 }
 
 
@@ -285,12 +296,11 @@ section .section-title hr {
     border-radius: 100%;
     border: 2px solid #000000;
     display: inline-block;
-    width: 15px;
-    height: 15px;
-    top: +2px;
+    width: 13px;
+    height: 13px;
     position: relative;
     margin-right: 20px;
-    vertical-align: top;
+    vertical-align: middle; 
     cursor: pointer;
     text-align: center;
     transition: all 250ms ease;
@@ -298,7 +308,7 @@ section .section-title hr {
 
 .radio input[type="radio"]:checked + .radio-label:before {
     background-color: black;
-    box-shadow: inset 0 0 0 4px white;
+    box-shadow: inset 0 0 0 3px white;
 }
 .radio input[type="radio"]:focus + .radio-label:before {
     outline: none;
@@ -309,9 +319,6 @@ section .section-title hr {
     margin-right: 20px;
 }
 
-.container-season {
-    display: flex;
-}
 
 .books {
     display: flex;
@@ -586,7 +593,7 @@ section #librarycard{
 .input-field{
     width:600px;
     height:387px;
-    border: 1px solid #BB945F;
+    border: 3px solid #BB945F;
     margin-top:30px;
     display: flex;
     flex-direction: column;
@@ -600,7 +607,7 @@ section #librarycard{
     width:560px;
     height:272px;
     background-color: #BB945F;
-    margin:20px;
+    margin:17px 20px 20px;
     display:flex;
     flex-direction: column;
     /* justify-content: space-between; */
