@@ -566,11 +566,6 @@ section .section-title hr {
     color: #000000;
 }
 
-.section #contacts {
-    height:575px;
-    margin-top:20px;
-}
-
 .location-card {
     margin-top:20px;
     display:flex;
@@ -1026,6 +1021,51 @@ input::placeholder {
     align-items: center;
     margin:0;
     padding-bottom: 0.5em;
+}
+
+.location-card {
+    margin-top:20px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height:auto;
+    margin-bottom:20px;
+    gap:100px;
+}
+
+.card-info img{
+   margin:0 15.5px;
+}
+
+.library-card-info{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.library-card-info:last-child{
+    text-align: center;
+}
+
+
+.user-card-info h4, .user-card-info h5{
+    text-align: center;
+}
+
+.user-card-info h5{
+    width:600px;
+    margin-top:40px;
+    font-weight:300;
+}
+
+.log-button{
+    margin-top:40px;
+    margin-bottom:20px;
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    gap:20px;
 }
 
 .books{
