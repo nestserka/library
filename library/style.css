@@ -13,6 +13,12 @@ body {
 
 .open {	
     display:flex !important;
+    animation: burgerAnimation 0.7s;
+}
+
+.close{
+    display:flex !important;
+    animation: burgerAnimationRev 0.7s;
 }
 
 @font-face {
@@ -860,6 +866,7 @@ input::placeholder {
     padding:0;
     width: 24px;
     height: 24px;
+    list-style-type: none;
 }
 
 .footer-item{
@@ -942,11 +949,27 @@ input::placeholder {
     display: none;
 }
 
-@@keyframes burgerAnimation {
-    from {opacity:0}
-    to {opacity:1}
+@keyframes burgerAnimation {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
+  
+@keyframes burgerAnimationRev {
+    0% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
 }
-
 
 @media (max-width: 1245px) {
     .books {
@@ -1060,8 +1083,12 @@ input::placeholder {
         overflow-y: auto;
         padding: 100px 107px;
         background-color: black;
-        animation: burgerAnimation 0.7s;
     }
+
+    .nav-link {
+        font-size:20px;
+    }
+
     .radio{
         display: flex;
         align-items: center;
@@ -1172,6 +1199,7 @@ input::placeholder {
     #contacts{
         padding-top:0;
     }    
+
 }
 
 @media (max-width: 732px) {
