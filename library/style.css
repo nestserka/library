@@ -98,7 +98,7 @@ h1 {
 
 .nav-link:hover {
     color: #a3a0a0;
-    font-family: intel-bold;
+    font-weight:bold;
 }
 
 .section-welcome {
@@ -276,16 +276,16 @@ section .section-title hr {
     align-items: center;
     justify-content: flex-start;
     margin-right: 90px;
+    font-family: intel-regular;
     padding-bottom: 0.5em;
 }
 
 .radio input[type="radio"] + .radio-label {
-    font-family: intel-regular;
     font-size: 20px; 
 }
 
 .radio input[type="radio"]:checked + .radio-label {
-    font-family: intel-bold;
+    font-weight:bold;
     font-size: 20px; 
 }
 
@@ -361,7 +361,8 @@ section .section-title hr {
 .card hr {
     width: 60px;
     height: 1px;
-    color: #BB945F;
+    background-color: #BB945F;
+    border-top: 1px solid #BB945F;
     margin:0;
     margin-bottom:18px ;
 }
@@ -384,6 +385,7 @@ section .section-title hr {
     letter-spacing: 2px;
     color:#000000;
     text-align: left;
+    font-weight:400;
     text-transform:capitalize;
     text-align: left;
     max-width: 355px;
@@ -412,7 +414,8 @@ section .section-title hr {
 }
 
 .action-button button:hover{
-    background-color:#BB945F
+    background-color:#BB945F;
+    border-color:#BB945F;
 }
 
 .card img{
@@ -472,6 +475,7 @@ section .section-title hr {
 .menu-food h5 {
     font-size: 20px;
     letter-spacing: 2px;
+    font-weight:400;
     line-height: 40px;
     color: #000000;
     width:215px;
@@ -620,6 +624,7 @@ section #librarycard{
     font-size:30px;
     line-height: 50px;
     margin:0;
+    font-weight:400;
     padding:0;
     letter-spacing: 0.02em;
 }
@@ -694,6 +699,7 @@ input::placeholder {
     font-size:20px;
     letter-spacing: 0.02em;
     color: black;
+    font-weight:400;
     line-height: 40px;
     width:460px;
     text-align: end;
