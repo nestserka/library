@@ -184,7 +184,7 @@ h1 {
     height: 220px;
     width: 600px;
     position: relative;
-    z-index: 2; /* Set a higher z-index value */
+    z-index: 2; 
 }
 
 .welcome-container h3 {
@@ -242,7 +242,7 @@ section .section-title hr {
     text-align: center;
     letter-spacing: 2px;
     margin-bottom: 40px;
-    font-weight:300;
+    font-weight:400;
     font-family: intel-regular;
 }
 
@@ -305,6 +305,11 @@ section .section-title hr {
 	padding-left: 26px;
 	margin-right: 0;
 	padding-top: 26px;
+  }
+
+  .picture-radio-buttons input[type="radio"]#forth + label[for="forth"],
+  .picture-radio-buttons input[type="radio"]#fifth + label[for="fifth"] {
+    display: none;
   }
   
   .picture-radio-buttons label::before {
@@ -937,6 +942,10 @@ input::placeholder {
     display: none;
 }
 
+@keyframes burgerAnimation {
+    from {opacity:0}
+    to {opacity:1}
+}
 @media (max-width: 1245px) {
     .books {
         display: flex;
@@ -1147,15 +1156,25 @@ input::placeholder {
         margin-bottom:15px;
     }
 
+    .picture-radio-buttons input[type="radio"]#forth + label[for="forth"],
+    .picture-radio-buttons input[type="radio"]#fifth + label[for="fifth"] {
+      display: block;
+    }
+
     #contacts{
         padding-top:0;
-    }
+    }    
 }
 
-@keyframes burgerAnimation {
-    from {opacity:0}
-    to {opacity:1}
+@media (max-width: 732px) {
+    .container-season {
+        display:flex;
+        flex-direction: row;
+        justify-content: start;
+        flex-wrap: wrap;
+        gap:40px;
     }
+}
     
 @media (max-width: 640px) {
         .card-info img {
