@@ -102,7 +102,7 @@ h1 {
 
 .nav-link:hover {
     color: #a3a0a0;
-    font-family: intel-bold;
+    font-weight:bold;
 }
 
 .burger {	
@@ -347,17 +347,17 @@ section .section-title hr {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    font-family: intel-regular;
     margin-right: 90px;
     padding-bottom: 0.5em;
 }
 
 .radio input[type="radio"] + .radio-label {
-    font-family: intel-regular;
     font-size: 20px; 
 }
 
 .radio input[type="radio"]:checked + .radio-label {
-    font-family: intel-bold;
+    font-weight:bold;
     font-size: 20px; 
 }
 
@@ -434,6 +434,8 @@ section .section-title hr {
     width: 60px;
     height: 1px;
     color: #BB945F;
+    background-color: #BB945F;
+    border-top: 1px solid #BB945F;
     margin:0;
     margin-bottom:18px ;
 }
@@ -455,9 +457,9 @@ section .section-title hr {
     line-height: 40px;
     letter-spacing: 2px;
     color:#000000;
-    text-align: left;
     text-transform:capitalize;
     text-align: left;
+    font-weight:400;
     max-width: 355px;
     margin:0;
 }
@@ -484,7 +486,8 @@ section .section-title hr {
 }
 
 .action-button button:hover{
-    background-color:#BB945F
+    background-color:#BB945F;
+    border-color:#BB945F;
 }
 
 .card img{
@@ -548,7 +551,7 @@ section .section-title hr {
     color: #000000;
     width:215px;
     font-family:intel-regular;
-    font-weight:300;
+    font-weight:400;
   }
   
 .menu-food hr {
@@ -765,6 +768,7 @@ input::placeholder {
     letter-spacing: 0.02em;
     color: black;
     line-height: 40px;
+    font-weight:400;
     width:460px;
     text-align: end;
 }
@@ -1029,6 +1033,7 @@ input::placeholder {
     align-items: center;
     margin:0;
     padding-bottom: 0.5em;
+    font-family: intel-regular;
 }
 
 .location-card {
@@ -1118,7 +1123,7 @@ input::placeholder {
 
 .nav-link:hover {
     color: #a3a0a0;
-    font-family: forum;
+    font-weight:bold;
 }
 
 #about{
