@@ -158,7 +158,8 @@ h1 {
     height: 600px;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('assets/images/Welcome.png');
+    background-position: center;
+    background-image: url('assets/images/Welcome.jpg');
     max-width: 1440px;
     margin: 0 auto;
     display: flex;
@@ -1058,19 +1059,7 @@ input::placeholder {
     .container-header .burger{
         order:4;
     }
-
-    .section-welcome {
-        position: relative;
-        height: 600px;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-image: url('assets/images/Welcome.jpg');
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
+    
     .nav {
         display: none;
         flex-direction: column-reverse; 
