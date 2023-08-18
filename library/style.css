@@ -967,6 +967,10 @@ input::placeholder {
     display: none;
 }
 
+.picture-radio-buttons input[type="radio"]:disabled + label {
+    cursor: default;
+}
+
 @keyframes burgerAnimation {
     0% {
       opacity: 0;
