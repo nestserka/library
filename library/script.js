@@ -179,22 +179,32 @@ userProfileLink.addEventListener("click", function(event) {
 //   console.log("clickd on register");
 // });
 
-
-let open_modal = document.querySelectorAll('.register-new');
+let open_modals = document.querySelectorAll('.register-new');
 let close_modal = document.getElementById('close_modal');
 let modal = document.getElementById('modal');
-let body = document.getElementsByTagName('body')[0];
-for (let i = 0; i < open_modal.length; i++) {
-    open_modal[i].onclick = function() { // клик на открытие
-        modal.classList.add('modal_vis'); // добавляем видимость окна
-        modal.classList.remove('bounceOutDown'); // удаляем эффект закрытия
-        body.classList.add('body_block'); // убираем прокрутку
-    };
+let body = document.body;
+
+for (let i = 0; i < open_modals.length; i++) {
+    open_modals[i].addEventListener('click', function() {
+        modal.classList.add('modal_vis');
+        body.classList.add('body_block');
+    });
 }
-close_modal.onclick = function() { // клик на закрытие
-    modal.classList.add('bounceOutDown'); // добавляем эффект закрытия
-    window.setTimeout(function() { // удаляем окно через полсекунды (чтобы увидеть эффект закрытия).
+
+close_modal.addEventListener('click', function() {
+    modal.classList.remove('modal_vis');
+    body.classList.remove('body_block');
+});
+
+modal.addEventListener('click', function(event) {
+    if (event.target === modal) {
         modal.classList.remove('modal_vis');
-        body.classList.remove('body_block'); // возвращаем прокрутку
-    }, 500);
-};
+        body.classList.remove('body_block');
+    }
+});
+
+
+
+
+
+

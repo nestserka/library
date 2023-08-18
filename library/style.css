@@ -1312,7 +1312,6 @@ input::placeholder {
     background: #FFF;
     width: 80px;
     height: 115px;
-    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
     position: absolute;
     z-index: 5;
     padding: 5px;
@@ -1354,6 +1353,7 @@ input::placeholder {
 
 .dropdown-content p:hover {
     color: #BB945F;
+    cursor: pointer;
 }
 
 
@@ -1371,15 +1371,15 @@ input::placeholder {
     left: 0;
     bottom: 0;
     right: 0;
-    z-index: 56;
-    display: flex;
+    z-index: 55;
+}
+
+.modal_vis {
+    display: flex; 
     justify-content: center;
     align-items: center;
 }
 
-.modal_vis {
-    display: block;
-}
 
 .body_block {
     overflow: hidden;
@@ -1399,27 +1399,43 @@ input::placeholder {
     width: 15px;
     height: 15px;
     opacity: 1;
-    top: 15px;
-    right: 15px;
+    top: 13px;
+    right: 10px;
+    transition: all 0.6s;
 }
 
 .close-registation:before,
 .close-registation:after {
     position: absolute;
     content: ' ';
-    height: 15px;
-    width: 2px;
+    height: 21px;
+    width: 3px;
     background-color: #333;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .close-registation:before {
     transform: rotate(45deg);
+    transition: transform 0.6s; 
 }
 
 .close-registation:after {
     transform: rotate(-45deg);
+    transition: transform 0.6s; 
+    
 }
+
+.close-registation:hover:before{
+    background-color: #BB945F;
+    transform: rotate(315deg);
+}
+
+.close-registation:hover:after{
+    background-color: #BB945F;
+    transform: rotate(405deg);
+}
+
 
 .regist-menu h3{
     text-align: center;
@@ -1430,35 +1446,76 @@ input::placeholder {
     line-height: 20px; 
     letter-spacing: 0.4px;
     text-transform: uppercase;
+    padding-bottom:20px;
+    margin:0;
+}
+
+.regist-menu form{
+    width:200px;
+    margin-bottom:10px;
+}
+
+.regist-menu label{
+    display:block;
+    color: #000;
+    font-family: intel-regular;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px; 
+    letter-spacing: 0.02em;
+    margin-bottom: 9px;;
 }
 
 .regist-menu input {
     border: 1px solid #BB945F;
+    width:200px;
+    margin-bottom: 10px;
 }
 
-/* #close_modal {
-    color: #BFE2FF;
-    font-size: 40px;
-    font-weight: bold;
-    font-family: Times, sans-serif;
-    border-radius: 50%;
-    border: 4px solid #BFE2FF;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
+.regist-menu button {
+    margin: 0;
+    border: 1px solid #000000;
+    background-color: white;
     text-align: center;
-    margin: 20px;
+    text-decoration: none;
+    font-family: intel-bold;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #000000;
     cursor: pointer;
-    position: absolute;
-    right: 0;
-    transform: rotate(45deg);
-    transition: all 0.6s;
-    box-sizing: content-box;
-} */
+    padding: 0;
+    line-height: 30px;
+    width: 75px;
+    height: 30px;
+    transition: all 0.4s ease-out;
+}
 
+.regist-menu button:hover {
+    background-color: #BB945F;
+    border-color: #BB945F;
+}
 
-/* #close_modal:hover {
-    color: #FFF;
-    transform: rotate(135deg);
-} */
+.regist-menu p{
+    color: #000;
+    font-family: intel-regular;
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.regist-menu .underline{
+    color: #000;
+    font-family: intel-regular;
+    font-size: 10px;
+    font-weight: 400;
+    display: inline-block;
+    font-family: intel-bold;
+    letter-spacing: 1px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.regist-menu .underline:hover{
+    color:#BB945F;
+}
+
 

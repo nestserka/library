@@ -32,23 +32,23 @@
                   <p class="login-current">Log In</p>
                   <p class="register-new">Register</p>
                 </div>
-                <div id="modal" class="modal bounceIn">
-                  <div class="regist-menu"> 
-                    <span class="close-registation"></span>
-                    <form> 
-                      <h3>Register</h3>
-                      <label for="name">First Name</label>
-                      <input type="text" id="name" name="name" pattern="[A-Za-z-]+">
-                      <label for="surname">Last Name</label>
-                      <input type="text" id="surnaname" name="surnaname" pattern="[A-Za-z-]+">
-                      <label for="email">Email</label>
-                      <input type="text" id="email" name="email" pattern="[A-Za-z-]+">
-                      <label for="password">Password</label>
-                      <input type="text" id="password" name="password" pattern="[A-Za-z-]+">
-                    </form>
-                    <button class="sign" type="button">Sign Up</button>
-                    <p>Already have an account? <span class="underline">Login</span></p>
-                </div>
+                <div id="modal" class="modal">
+                  <div class="regist-menu">
+                      <span class="close-registation" id="close_modal"></span>
+                      <form>
+                          <h3>Register</h3>
+                          <label for="firstname">First name</label>
+                          <input type="text" id="firstname" name="firstname" pattern="[A-Za-z-]+" required>
+                          <label for="surname">Last name</label>
+                          <input type="text" id="surname" name="surname" pattern="[A-Za-z-]+" required>
+                          <label for="email">E-mail</label>
+                          <input type="email"  id="email" name="email" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" required>
+                          <label for="password">Password</label>
+                          <input type="text" id="password" name="password" required minlength="8" required>
+                      </form>
+                      <button class="sign" type="button">Sign Up</button>
+                      <p>Already have an account? &nbsp;&nbsp;<span class="underline">Login</span></p>
+                  </div>
               </div>
               </div>
                 <div class="burger">
@@ -429,7 +429,7 @@
           <h4 class="user-card">Get a reader card</h4>
           <h5 class="newcard-info">You will be able to see a reader card after logging into account or you can register a new account</h5>
           <div class="log-button">
-            <button class="sign" type="button">Sign Up</button>
+            <button class="register-new" type="button">Sign Up</button>
             <button class="login" type="button">Log in</button>
           </div>
         </div>
