@@ -21,6 +21,9 @@ if (window.innerWidth <= 768) {
 }
 const movePosition = slidesToScroll * itemWidth;
 
+
+
+
 function closeMenu() {
   nav.classList.remove('open');
   burger.classList.remove('active');
@@ -119,3 +122,38 @@ const updateRadioButtons = () => {
 
 checkBtns();
 updateRadioButtons();
+
+
+// books-slider
+
+// const bookRadioButton = document.querySelectorAll('.radio-label');
+// const sliderContainers = document.querySelectorAll('.books-slider-container');
+// const booksToShow = window.innerWidth > 768 ? 4 : 1;
+
+const bookRadioLabels = document.querySelectorAll('.radio-label');
+const sliderContainers = document.querySelectorAll('.books-slider-container');
+
+sliderContainers[0].classList.add('active');
+
+bookRadioLabels.forEach((label, index) => {
+    label.addEventListener('click', () => {
+        sliderContainers.forEach((container, i) => {
+            if (i === index) {
+                if (!container.classList.contains('active')) {
+                  setTimeout(function() {
+                    container.classList.add('active');
+                    container.classList.add("elementToFadeIn");}, 1000);
+                }
+            } else {
+                if (container.classList.contains('active')) {
+                  container.classList.remove("elementToFadeIn");
+                    container.classList.add("elementToFadeInAndOut");
+                    setTimeout(function() {
+                        container.classList.remove("elementToFadeInAndOut");
+                        container.classList.remove('active');
+                    }, 1000); 
+                }
+            }
+        });
+    });
+});
