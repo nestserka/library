@@ -1129,10 +1129,11 @@ input::placeholder {
         margin-right: auto;
     }
 
-    .container-header .user-profile {
+    .container-header .dropdown {
         order: 3;
         margin-right: 40px;
         z-index: 50;
+        /* position: relative; */
     }
 
     .container-header .burger {
@@ -1303,3 +1304,53 @@ input::placeholder {
         margin: 0 auto;
     }
 }
+
+  .dropdown-content {
+    display: none;
+    background: #FFF;
+    width:80px;
+    height:115px;
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    position:absolute;
+    z-index: 5;
+    padding:5px;
+    transform: translateX(-60%); 
+  }
+
+  .dropdown-content h2 {
+    color: #000;
+    font-family: intel-bold;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 20px; 
+    margin:0;
+    padding:0;
+  }
+
+  .dropdown-content p{
+    color: #000;
+    text-align: center;
+    font-family: intel-regular;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px; 
+    margin:0;
+    padding:0;
+    margin-bottom:10px;
+  }
+
+ .dropdown-content hr {
+    width: 40px;
+    height: 1px;
+    color: #BB945F;
+    background-color: #BB945F;
+    border-top: 1px solid #BB945F;
+    margin: 5px 15px 15px;
+}
+  
+
+.dropdown-content p:hover {color: #BB945F;}
+  
+ 
+.show {display:block;}

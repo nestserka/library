@@ -58,14 +58,22 @@ navLinks.forEach(link => {
   });
 });
 
+const dropdownContent = document.querySelector('.dropdown-content');
+
+
 document.body.addEventListener('click', (event) => {
   const isInsideMenu = event.target.closest('.nav');
   const isBurgerIcon = event.target.closest('.burger');
+  const isRegistrationIcon = event.target.closest('.user-profile');
+
+  if (!isInsideMenu && !isRegistrationIcon) {
+    dropdownContent.classList.remove('show'); // Close dropdown
+  }
+
   if (!isInsideMenu && !isBurgerIcon && nav.classList.contains('open')) {
-    closeMenu();
+    closeMenu(); 
   }
 });
-
 
 // slider
 items.forEach((item) => {
@@ -126,10 +134,6 @@ updateRadioButtons();
 
 // books-slider
 
-// const bookRadioButton = document.querySelectorAll('.radio-label');
-// const sliderContainers = document.querySelectorAll('.books-slider-container');
-// const booksToShow = window.innerWidth > 768 ? 4 : 1;
-
 const bookRadioLabels = document.querySelectorAll('.radio-label');
 const sliderContainers = document.querySelectorAll('.books-slider-container');
 
@@ -156,4 +160,15 @@ bookRadioLabels.forEach((label, index) => {
             }
         });
     });
+});
+
+
+// registration form
+
+let userProfileLink = document.querySelector(".user-profile");
+
+userProfileLink.addEventListener("click", function(event) {
+    event.preventDefault(); 
+    document.getElementById("register").classList.toggle("show");
+    console.log("User profile link clicked!");
 });
