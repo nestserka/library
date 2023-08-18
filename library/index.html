@@ -29,9 +29,27 @@
                 <div id="register" class="dropdown-content">
                     <h2 class="sections-title">Profile</h2>
                     <hr>
-                  <p>Log In</p>
-                  <p>Register</p>
+                  <p class="login-current">Log In</p>
+                  <p class="register-new">Register</p>
                 </div>
+                <div id="modal" class="modal bounceIn">
+                  <div class="regist-menu"> 
+                    <span class="close-registation"></span>
+                    <form> 
+                      <h3>Register</h3>
+                      <label for="name">First Name</label>
+                      <input type="text" id="name" name="name" pattern="[A-Za-z-]+">
+                      <label for="surname">Last Name</label>
+                      <input type="text" id="surnaname" name="surnaname" pattern="[A-Za-z-]+">
+                      <label for="email">Email</label>
+                      <input type="text" id="email" name="email" pattern="[A-Za-z-]+">
+                      <label for="password">Password</label>
+                      <input type="text" id="password" name="password" pattern="[A-Za-z-]+">
+                    </form>
+                    <button class="sign" type="button">Sign Up</button>
+                    <p>Already have an account? <span class="underline">Login</span></p>
+                </div>
+              </div>
               </div>
                 <div class="burger">
                   <span></span>	
