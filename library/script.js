@@ -1,6 +1,17 @@
-// burger
+// variables
 const burger = document.querySelector('.burger');
 const nav = document.querySelector('.nav');
+let userProfileLink = document.querySelector(".user-profile");
+let open_modals = document.querySelectorAll('.register-new');
+let close_modal = document.getElementById('close_modal');
+let modal = document.getElementById('modal');
+let body = document.body;
+let open_login_modals = document.querySelectorAll('.login-current');
+let modal_login = document.getElementById('modal-login');
+let body_login = document.body;
+let close_modal_login = document.getElementById('close_modal_login');
+const navLinks = document.querySelectorAll('.nav-link');
+const dropdownContent = document.querySelector('.dropdown-content');
 
 // slider
 
@@ -20,8 +31,6 @@ if (window.innerWidth <= 768) {
   itemWidth = 450;
 }
 const movePosition = slidesToScroll * itemWidth;
-
-
 
 
 function closeMenu() {
@@ -44,8 +53,6 @@ burger.addEventListener('click', function () {
   }
 });
 
-
-const navLinks = document.querySelectorAll('.nav-link');
 navLinks.forEach(link => {
   link.addEventListener('click', () => {
     document.querySelector('.nav').classList.remove('open');
@@ -57,8 +64,6 @@ navLinks.forEach(link => {
     }, 300);
   });
 });
-
-const dropdownContent = document.querySelector('.dropdown-content');
 
 
 document.body.addEventListener('click', (event) => {
@@ -165,24 +170,10 @@ bookRadioLabels.forEach((label, index) => {
 
 // registration form
 
-let userProfileLink = document.querySelector(".user-profile");
-
 userProfileLink.addEventListener("click", function(event) {
     event.preventDefault(); 
     document.getElementById("register").classList.toggle("show");
-    console.log("User profile link clicked!");
 });
-
-
-// let register = document.querySelector(".register-new");
-// register.addEventListener("click", function(event) {
-//   console.log("clickd on register");
-// });
-
-let open_modals = document.querySelectorAll('.register-new');
-let close_modal = document.getElementById('close_modal');
-let modal = document.getElementById('modal');
-let body = document.body;
 
 for (let i = 0; i < open_modals.length; i++) {
     open_modals[i].addEventListener('click', function() {
@@ -204,7 +195,122 @@ modal.addEventListener('click', function(event) {
 });
 
 
+// login
+
+for (let i = 0; i < open_login_modals.length; i++) {
+  open_login_modals[i].addEventListener('click', function() {
+    modal_login.classList.add('modal_vis');
+    body_login.classList.add('body_block');
+    });
+}
+
+close_modal_login.addEventListener('click', function() {
+  console.log("click")
+  modal_login.classList.remove('modal_vis');
+  body_login.classList.remove('body_block');
+});
+
+modal_login.addEventListener('click', function(event) {
+    if (event.target === modal_login) {
+      modal_login.classList.remove('modal_vis');
+      body_login.classList.remove('body_block');
+    }
+});
 
 
+// register
 
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("userForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      var userName = document.getElementById("firstname").value;
+      var surname = document.getElementById("surname").value;
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      var bookCard = Math.random().toString().substring(2,18);
+      var visit = 1;
+      var key = bookCard;
+
+      const user = {
+          userName,
+          surname,
+          email,
+          password,
+          visit,
+          bookCard
+      };
+
+      localStorage.setItem(key, JSON.stringify(user));
+      console.log("User data saved:", user);
+      updateProfileImage(user);
+  });
+
+
+  function updateProfileImage(user) {
+    let initials = (user.userName[0] || "") + (user.surname[0] || "");
+    let canvas = document.createElement("canvas");
+    let ctx = canvas.getContext("2d");
+
+    canvas.width = 28;
+    canvas.height = 28;
+
+    let font = new FontFace('intel-regular', 'url(../library/fonts/Inter-Regular.ttf)');
+    ctx.beginPath();
+    ctx.arc(14, 14, 14, 0, 2 * Math.PI, false);
+    ctx.closePath();
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.fillStyle = "black";
+    ctx.font = "bold 13px intel-regular";
+    ctx.textAlign = "center";
+    ctx.fillText(initials, 14, 19);
+
+    let profileImage = document.getElementById("profileImage");
+    profileImage.src = canvas.toDataURL();
+    console.log(profileImage.src);
+}
+});
+
+// login
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("retrieveButton").addEventListener("click", function(event) {
+    event.preventDefault();
+
+    let searchValue = document.getElementById("loginemail").value;
+    let password = document.getElementById("login_password").value;
+    let matchingUser = null;
+
+    for (let i = 0; i < localStorage.length; i++) {
+      let key = localStorage.key(i);
+      let storedValue = localStorage.getItem(key);
+
+      try {
+        let userData = JSON.parse(storedValue);
+        if (
+          userData.email === searchValue ||
+          userData.bookCard === searchValue
+        ) {
+          matchingUser = userData;
+          console.log("Found matching record with key:", key);
+          console.log("Matching value:", userData);
+          break; 
+        }
+      } catch (error) {
+        console.log("Error parsing JSON for key:", key);
+      }
+    }
+
+    if (matchingUser) {
+      if (matchingUser.password == password) {
+        console.log("Password is correct. You are logged in.");
+      } else {
+        console.log("Incorrect password.");
+      }
+    } else {
+      console.log("User not found.");
+    }
+  });
+});
 
