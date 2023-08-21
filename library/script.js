@@ -19,6 +19,7 @@ let tempKey = null;
 let loginForm = document.getElementById("loginForm");
 let userForm = document.getElementById("userForm");
 
+
 // slider
 
 const btnPrev = document.querySelector('.left-arrow');
@@ -425,7 +426,7 @@ function updateProfileImage(user) {
   ctx.fillStyle = "white";
   ctx.fill();
   ctx.fillStyle = "black";
-  ctx.font = "bold 13px intel-regular";
+  ctx.font = "bold 14px intel-regular";
   ctx.textAlign = "center";
   ctx.fillText(initials, 14, 19);
 
@@ -461,3 +462,70 @@ function resetFormFields() {
   loginForm.reset();
   userForm.reset();
 }
+
+ 
+// modal for user card
+
+let modalProfile = document.getElementById('modal-profile');
+let closeProfile = document.getElementById('close-profile');
+let openProfileModals = document.querySelectorAll('.my-profile');
+
+
+for (let i = 0; i < openProfileModals.length; i++) {
+  openProfileModals[i].addEventListener('click', function() {
+    let sectionsTitle = document.querySelector(".card_number");
+    sectionsTitle.textContent = tempKey;
+
+
+    let storedValue = localStorage.getItem(tempKey);
+    let userData = JSON.parse(storedValue);
+
+    let visits = document.querySelector(".visits_count");
+    visits.textContent = userData.visit;
+
+    let my_books = document.querySelector(".books_count");
+    my_books.textContent = userData.booksOwn;
+
+    let initials_main = document.querySelector(".initials-main");
+    let initials_sub = document.querySelector(".initials-sub");
+    let initials = (userData.userName[0] || "") + (userData.surname[0] || "");
+    initials_main.textContent = initials;
+    initials_sub.textContent = userData.userName + " " + userData.surname;
+  
+    modalProfile.classList.add('fade-in');
+    setTimeout(function(){
+      modalProfile.classList.add('modal_profile_test');
+      body.classList.add('body_block');
+      modal_login.classList.remove('fade-in');
+    }, 200);
+  });
+}
+
+modalProfile.addEventListener('click', function(event) {
+  if (event.target === modalProfile) {
+      modalProfile.classList.remove('modal_profile_test');
+      body.classList.remove('body_block');
+  }
+});
+
+closeProfile.addEventListener('click', function() {
+  modalProfile.classList.remove('modal_profile_test');
+  body.classList.remove('body_block');
+});
+
+
+const copyIcon = document.getElementById('copy-icon');
+const cardNumber = document.querySelector(".card_number");
+const copyFeedback = document.getElementById('copy-feedback');
+
+copyIcon.addEventListener('click', function() {
+  const range = document.createRange();
+  range.selectNode(cardNumber);
+  window.getSelection().addRange(range);
+  document.execCommand('copy');
+  window.getSelection().removeAllRanges();
+  copyFeedback.style.display = 'inline';
+  setTimeout(() => {
+    copyFeedback.style.display = 'none';
+  }, 1000);
+});
