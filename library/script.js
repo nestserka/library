@@ -314,3 +314,20 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+let extra_modal = document.querySelector('.underline');
+
+extra_modal.addEventListener('click', function() {
+    modal.classList.remove('modal_vis');
+    body.classList.remove('body_block');
+    modal_login.classList.add('modal_vis');
+    body_login.classList.add('body_block');
+});
+
+let register_button = document.querySelector('.underline-register');
+
+register_button.addEventListener('click', function() {
+  modal_login.classList.remove('modal_vis');
+  body_login.classList.remove('body_block');
+  modal.classList.add('modal_vis');
+  body.classList.add('body_block');
+});

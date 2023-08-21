@@ -1364,7 +1364,6 @@ input::placeholder {
 /* modal */
 
 .modal {
-    display: none;
     background: rgba(36, 35, 35, 0.8);
     position: fixed;
     top: 0;
@@ -1372,12 +1371,19 @@ input::placeholder {
     bottom: 0;
     right: 0;
     z-index: 55;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .modal_vis {
     display: flex; 
     justify-content: center;
     align-items: center;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 
@@ -1522,7 +1528,6 @@ input::placeholder {
 /* login */
 
 .modal-login {
-    display: none;
     background: rgba(36, 35, 35, 0.8);
     position: fixed;
     top: 0;
@@ -1530,12 +1535,19 @@ input::placeholder {
     bottom: 0;
     right: 0;
     z-index: 55;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .modal_vis {
     display: flex; 
     justify-content: center;
     align-items: center;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 
@@ -1617,7 +1629,7 @@ input::placeholder {
     font-weight: 400;
 }
 
-.login-menu .underline{
+.login-menu .underline-register{
     color: #000;
     font-family: intel-regular;
     font-size: 10px;
@@ -1629,6 +1641,6 @@ input::placeholder {
     cursor: pointer;
 }
 
-.login-menu .underline:hover{
+.login-menu .underline-register:hover{
     color:#BB945F;
 }
