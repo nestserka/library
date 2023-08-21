@@ -1332,8 +1332,8 @@ input::placeholder {
 
 .book-number{
     color: #000;
-    font-family: intel-regular;
-    font-size: 14px;
+    font-family: intel-bold;
+    font-size: 13px;
     font-style: normal;
     font-weight: 700;
     line-height: 20px; 
