@@ -1,5 +1,6 @@
 // variables
 const burger = document.querySelector('.burger');
+const originalSrc = document.getElementById('profileImage').src;
 const nav = document.querySelector('.nav');
 let userProfileLink = document.querySelector(".user-profile");
 let open_modals = document.querySelectorAll('.register-new');
@@ -14,7 +15,9 @@ const navLinks = document.querySelectorAll('.nav-link');
 let  dropdownContentList = document.querySelectorAll('.dropdown-content');
 let buy_books = document.querySelectorAll('.buy');
 let checkIfLoggedIn = false;
-let tempKey;
+let tempKey = null;
+let loginForm = document.getElementById("loginForm");
+let userForm = document.getElementById("userForm");
 
 // slider
 
@@ -218,6 +221,7 @@ close_modal.addEventListener('click', function() {
       modal.classList.remove('modal_vis');
       body.classList.remove('body_block');
       modal.classList.remove('modal_fade');
+      resetFormFields();
     }, 1000);
 });
 
@@ -230,6 +234,7 @@ modal.addEventListener('click', function(event) {
         body.classList.remove('body_block');
         modal.classList.remove('modal_fade');
       }, 1000);
+      resetFormFields();
     }
 });
 
@@ -249,6 +254,7 @@ close_modal_login.addEventListener('click', function() {
     modal_login.classList.remove('modal_vis');
     body_login.classList.remove('body_block');
     modal_login.classList.remove('modal_fade');
+    resetFormFields();
   }, 1000);
 });
 
@@ -259,6 +265,7 @@ modal_login.addEventListener('click', function(event) {
     modal_login.classList.remove('modal_vis');
     body_login.classList.remove('body_block');
     modal_login.classList.remove('modal_fade');
+    resetFormFields();
   }, 1000);
   }
 });
@@ -297,8 +304,13 @@ document.addEventListener("DOMContentLoaded", function () {
       checkIfLoggedIn = true;
       tempKey = bookCard;
       updateProfileImage(user);
-      modal.classList.remove('modal_vis');
-      body.classList.remove('body_block');
+      modal.classList.add('modal_fade');
+      setTimeout(function(){
+        modal.classList.remove('modal_vis');
+        body.classList.remove('body_block');
+        modal.classList.remove('modal_fade');
+        resetFormFields();
+      }, 1000);
   });
 });
 
@@ -333,47 +345,68 @@ for (let i = 0; i < buy_books.length; i++) {
 // login
 
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("retrieveButton").addEventListener("click", function(event) {
+  const error = document.getElementById("error");
+  retrieveButton.addEventListener("click", function (event) {
     event.preventDefault();
 
-    let searchValue = document.getElementById("loginemail").value;
-    let password = document.getElementById("login_password").value;
-    let matchingUser = null;
+    const searchValue = loginForm.querySelector("#loginemail").value;
+    const password = loginForm.querySelector("#login_password").value;
+    let matchingUser = findMatchingUser(searchValue);
 
+    if (matchingUser) {
+      if (matchingUser.password === password) {
+        loginUser(matchingUser);
+      } else {
+        showError("Email or password is not correct.");
+      }
+    } else {
+      showError("User not found. Try again");
+    }
+  });
+
+  function findMatchingUser(value) {
     for (let i = 0; i < localStorage.length; i++) {
-      let key = localStorage.key(i);
-      let storedValue = localStorage.getItem(key);
+      const key = localStorage.key(i);
+      const storedValue = localStorage.getItem(key);
 
       try {
-        let userData = JSON.parse(storedValue);
-        if (
-          userData.email === searchValue ||
-          userData.bookCard === searchValue
-        ) {
-          matchingUser = userData;
-          console.log("Found matching record with key:", key);
-          console.log("Matching value:", userData);
-          break; 
+        const userData = JSON.parse(storedValue);
+        if (userData.email === value || userData.bookCard === value) {
+          return userData;
         }
       } catch (error) {
         console.log("Error parsing JSON for key:", key);
       }
     }
+    return null;
+  }
 
-    if (matchingUser) {
-      if (matchingUser.password == password) {
-        console.log("Password is correct. You are logged in.");
-        matchingUser.visit += 1
-        matchingUser.isLoggedIn = true;
-        localStorage.setItem(matchingUser.bookCard, JSON.stringify(matchingUser));
-        updateProfileImage(matchingUser);
-      } else {
-        console.log("Incorrect password.");
-      }
-    } else {
-      console.log("User not found.");
-    }
-  });
+  function loginUser(user) {
+    console.log("Password is correct. You are logged in.");
+    user.visit += 1;
+    user.isLoggedIn = true;
+    localStorage.setItem(user.bookCard, JSON.stringify(user));
+    updateProfileImage(user);
+    checkIfLoggedIn = true;
+    tempKey = user.bookCard;
+
+    modal_login.classList.add('modal_fade');
+    setTimeout(function(){
+      modal_login.classList.remove('modal_vis');
+      body_login.classList.remove('body_block');
+      modal_login.classList.remove('modal_fade');
+    }, 1000);
+    resetFormFields()
+  }
+
+  function showError(message) {
+    console.log("Incorrect password.");
+    error.textContent = message;
+
+    setTimeout(function() {
+      error.textContent = "";
+    }, 5000);
+  }
 });
 
 
@@ -399,4 +432,32 @@ function updateProfileImage(user) {
   let profileImage = document.getElementById("profileImage");
   profileImage.src = canvas.toDataURL();
   console.log(profileImage.src);
+  profileImage.title = user.userName + " " + user.surname;
+}
+
+
+// logout
+
+let logoutBtn = document.querySelector(".log-out");
+
+logoutBtn.addEventListener('click', function() {
+      let storedValue = localStorage.getItem(tempKey);
+      let userData = JSON.parse(storedValue);
+      userData.isLoggedIn = false;
+      localStorage.setItem(tempKey, JSON.stringify(userData));
+      checkIfLoggedIn = false;
+      tempKey = null;
+      restoreImageOnLogout()
+});
+
+
+function restoreImageOnLogout() {
+  const profileImage = document.getElementById('profileImage');
+  profileImage.src = originalSrc;
+  profileImage.title  = "";
+}
+
+function resetFormFields() {
+  loginForm.reset();
+  userForm.reset();
 }
