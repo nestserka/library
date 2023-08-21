@@ -279,6 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var visit = 1;
       var key = bookCard;
       var isLoggedIn = true;
+      var booksOwn = 0;
 
       const user = {
           userName,
@@ -287,7 +288,8 @@ document.addEventListener("DOMContentLoaded", function () {
           password,
           visit,
           bookCard,
-          isLoggedIn
+          isLoggedIn,
+          booksOwn
       };
 
       localStorage.setItem(key, JSON.stringify(user));
