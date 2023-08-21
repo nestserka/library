@@ -11,7 +11,10 @@ let modal_login = document.getElementById('modal-login');
 let body_login = document.body;
 let close_modal_login = document.getElementById('close_modal_login');
 const navLinks = document.querySelectorAll('.nav-link');
-const dropdownContent = document.querySelector('.dropdown-content');
+let  dropdownContentList = document.querySelectorAll('.dropdown-content');
+let buy_books = document.querySelectorAll('.buy');
+let checkIfLoggedIn = false;
+let tempKey;
 
 // slider
 
@@ -31,6 +34,22 @@ if (window.innerWidth <= 768) {
   itemWidth = 450;
 }
 const movePosition = slidesToScroll * itemWidth;
+
+
+window.onload = function () {
+  for (let i = 0; i < localStorage.length; i++) {
+    let key = localStorage.key(i);
+    let storedValue = localStorage.getItem(key);
+    let userData = JSON.parse(storedValue);
+    if (userData.isLoggedIn === true){
+      checkIfLoggedIn = true;
+      tempKey = userData.bookCard;
+      updateProfileImage(userData);
+      break;
+    }
+  }
+}
+
 
 
 function closeMenu() {
@@ -69,16 +88,20 @@ navLinks.forEach(link => {
 document.body.addEventListener('click', (event) => {
   const isInsideMenu = event.target.closest('.nav');
   const isBurgerIcon = event.target.closest('.burger');
-  const isRegistrationIcon = event.target.closest('.user-profile');
+  let isRegistrationIcon = event.target.closest('.user-profile');
 
   if (!isInsideMenu && !isRegistrationIcon) {
-    dropdownContent.classList.remove('show'); // Close dropdown
+    dropdownContentList.forEach(dropdownContent => {
+      dropdownContent.classList.remove('show');
+    });
   }
 
   if (!isInsideMenu && !isBurgerIcon && nav.classList.contains('open')) {
     closeMenu(); 
   }
 });
+
+
 
 // slider
 items.forEach((item) => {
@@ -171,8 +194,14 @@ bookRadioLabels.forEach((label, index) => {
 // registration form
 
 userProfileLink.addEventListener("click", function(event) {
-    event.preventDefault(); 
+    event.preventDefault();
+    if (checkIfLoggedIn) {
+    document.getElementById("loggedin-profile").classList.toggle("show");
+    let sectionsTitle = document.querySelector(".book-number");
+    sectionsTitle.textContent = tempKey;
+    } else {
     document.getElementById("register").classList.toggle("show");
+    }
 });
 
 for (let i = 0; i < open_modals.length; i++) {
@@ -228,9 +257,11 @@ document.addEventListener("DOMContentLoaded", function () {
       var surname = document.getElementById("surname").value;
       var email = document.getElementById("email").value;
       var password = document.getElementById("password").value;
-      var bookCard = Math.random().toString().substring(2,18);
+      let size = 9;
+      var bookCard = [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16).toUpperCase()).join('');
       var visit = 1;
       var key = bookCard;
+      var isLoggedIn = true;
 
       const user = {
           userName,
@@ -238,39 +269,47 @@ document.addEventListener("DOMContentLoaded", function () {
           email,
           password,
           visit,
-          bookCard
+          bookCard,
+          isLoggedIn
       };
 
       localStorage.setItem(key, JSON.stringify(user));
       console.log("User data saved:", user);
+      checkIfLoggedIn = true;
+      tempKey = bookCard;
       updateProfileImage(user);
+      modal.classList.remove('modal_vis');
+      body.classList.remove('body_block');
   });
-
-
-  function updateProfileImage(user) {
-    let initials = (user.userName[0] || "") + (user.surname[0] || "");
-    let canvas = document.createElement("canvas");
-    let ctx = canvas.getContext("2d");
-
-    canvas.width = 28;
-    canvas.height = 28;
-
-    let font = new FontFace('intel-regular', 'url(../library/fonts/Inter-Regular.ttf)');
-    ctx.beginPath();
-    ctx.arc(14, 14, 14, 0, 2 * Math.PI, false);
-    ctx.closePath();
-    ctx.fillStyle = "white";
-    ctx.fill();
-    ctx.fillStyle = "black";
-    ctx.font = "bold 13px intel-regular";
-    ctx.textAlign = "center";
-    ctx.fillText(initials, 14, 19);
-
-    let profileImage = document.getElementById("profileImage");
-    profileImage.src = canvas.toDataURL();
-    console.log(profileImage.src);
-}
 });
+
+let extra_modal = document.querySelector('.underline');
+
+extra_modal.addEventListener('click', function() {
+    modal.classList.remove('modal_vis');
+    body.classList.remove('body_block');
+    modal_login.classList.add('modal_vis');
+    body_login.classList.add('body_block');
+});
+
+let register_button = document.querySelector('.underline-register');
+
+register_button.addEventListener('click', function() {
+  modal_login.classList.remove('modal_vis');
+  body_login.classList.remove('body_block');
+  modal.classList.add('modal_vis');
+  body.classList.add('body_block');
+});
+
+
+
+for (let i = 0; i < buy_books.length; i++) {
+  buy_books[i].addEventListener('click', function() {
+    modal_login.classList.add('modal_vis');
+    body_login.classList.add('body_block');
+    });
+}
+
 
 // login
 
@@ -305,6 +344,10 @@ document.addEventListener("DOMContentLoaded", function () {
     if (matchingUser) {
       if (matchingUser.password == password) {
         console.log("Password is correct. You are logged in.");
+        matchingUser.visit += 1
+        matchingUser.isLoggedIn = true;
+        localStorage.setItem(matchingUser.bookCard, JSON.stringify(matchingUser));
+        updateProfileImage(matchingUser);
       } else {
         console.log("Incorrect password.");
       }
@@ -314,20 +357,27 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-let extra_modal = document.querySelector('.underline');
 
-extra_modal.addEventListener('click', function() {
-    modal.classList.remove('modal_vis');
-    body.classList.remove('body_block');
-    modal_login.classList.add('modal_vis');
-    body_login.classList.add('body_block');
-});
+function updateProfileImage(user) {
+  let initials = (user.userName[0] || "") + (user.surname[0] || "");
+  let canvas = document.createElement("canvas");
+  let ctx = canvas.getContext("2d");
 
-let register_button = document.querySelector('.underline-register');
+  canvas.width = 28;
+  canvas.height = 28;
 
-register_button.addEventListener('click', function() {
-  modal_login.classList.remove('modal_vis');
-  body_login.classList.remove('body_block');
-  modal.classList.add('modal_vis');
-  body.classList.add('body_block');
-});
+  let font = new FontFace('intel-regular', 'url(../library/fonts/Inter-Regular.ttf)');
+  ctx.beginPath();
+  ctx.arc(14, 14, 14, 0, 2 * Math.PI, false);
+  ctx.closePath();
+  ctx.fillStyle = "white";
+  ctx.fill();
+  ctx.fillStyle = "black";
+  ctx.font = "bold 13px intel-regular";
+  ctx.textAlign = "center";
+  ctx.fillText(initials, 14, 19);
+
+  let profileImage = document.getElementById("profileImage");
+  profileImage.src = canvas.toDataURL();
+  console.log(profileImage.src);
+}
