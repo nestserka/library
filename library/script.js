@@ -178,7 +178,7 @@ bookRadioLabels.forEach((label, index) => {
                 if (!container.classList.contains('active')) {
                   setTimeout(function() {
                     container.classList.add('active');
-                    container.classList.add("elementToFadeIn");}, 1000);
+                    container.classList.add("elementToFadeIn");}, 300);
                 }
             } else {
                 if (container.classList.contains('active')) {
@@ -187,7 +187,7 @@ bookRadioLabels.forEach((label, index) => {
                     setTimeout(function() {
                         container.classList.remove("elementToFadeInAndOut");
                         container.classList.remove('active');
-                    }, 1000); 
+                    }, 300); 
                 }
             }
         });

@@ -435,11 +435,11 @@ section .section-title hr {
 }
 
 .elementToFadeInAndOut {
-    animation: fadeOut 1s linear forwards;
+    animation: fadeOut 0.3s linear forwards;
 }
 
 .elementToFadeIn {
-    animation: fadeIn 1s linear 1 forwards;
+    animation: fadeIn 0.3s linear 1 forwards;
 }
 
 .books-slider-container.active {
