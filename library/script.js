@@ -51,23 +51,24 @@ window.onload = function () {
       tempKey = userData.bookCard;
       updateProfileImage(userData);
 
+      if (userData.numberOfBook) {
+        userData.numberOfBook.forEach((item) => {
+          console.log(item)
+          const selector = `button[data-book-id="${item}"]`;
+          const button = document.querySelector(selector);
+          if (button) {
+            button.classList.remove("buy");
+            button.classList.add("own-button");
+            button.disabled = true;
+            button.textContent = 'Own';
+          }
+        });
+      }
 
-      userData.numberOfBook.forEach((item) => {
-        console.log(item)
-        const selector = `button[data-book-id="${item}"]`;
-        const button = document.querySelector(selector);
-        if (button) {
-          button.classList.remove("buy");
-          button.classList.add("own-button");
-          button.disabled = true;
-          button.textContent = 'Own';
-        }
-      });
       break;
     }
   }
 }
-
 
 
 function closeMenu() {
@@ -257,12 +258,21 @@ modal.addEventListener('click', function (event) {
 
 // login
 
-for (let i = 0; i < open_login_modals.length; i++) {
-  open_login_modals[i].addEventListener('click', function () {
-    modal_login.classList.add('modal_vis');
-    body_login.classList.add('body_block');
-  });
+function openModal() {
+  modal_login.classList.add('modal_vis');
+  body_login.classList.add('body_block');
 }
+
+for (let i = 0; i < open_login_modals.length; i++) {
+  open_login_modals[i].addEventListener('click', openModal);
+}
+
+// for (let i = 0; i < open_login_modals.length; i++) {
+//   open_login_modals[i].addEventListener('click', function () {
+//     modal_login.classList.add('modal_vis');
+//     body_login.classList.add('body_block');
+//   });
+// }
 
 close_modal_login.addEventListener('click', function () {
   modal_login.classList.add('modal_fade');
@@ -466,6 +476,7 @@ logoutBtn.addEventListener('click', function () {
   localStorage.setItem(tempKey, JSON.stringify(userData));
   checkIfLoggedIn = false;
   tempKey = null;
+  if (userData.numberOfBook) {
   userData.numberOfBook.forEach((item) => {
     console.log(item)
     const selector = `button[data-book-id="${item}"]`;
@@ -477,6 +488,7 @@ logoutBtn.addEventListener('click', function () {
       button.textContent = 'Buy';
     }
   });
+}
   restoreImageOnLogout()
 });
 
@@ -503,6 +515,9 @@ let openProfileModals = document.querySelectorAll('.my-profile');
 
 for (let i = 0; i < openProfileModals.length; i++) {
   openProfileModals[i].addEventListener('click', function () {
+    if (!checkIfLoggedIn){
+      openModal()
+    } else {
     let sectionsTitle = document.querySelector(".card_number");
     sectionsTitle.textContent = tempKey;
 
@@ -528,7 +543,8 @@ for (let i = 0; i < openProfileModals.length; i++) {
       body.classList.add('body_block');
       modalProfile.classList.remove('fade-in');
     }, 200);
-  });
+  }
+  }); 
 }
 
 modalProfile.addEventListener('click', function (event) {
