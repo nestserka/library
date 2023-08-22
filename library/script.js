@@ -420,7 +420,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function showError(message) {
-    console.log("Incorrect password.");
     error.textContent = message;
 
     setTimeout(function () {
@@ -653,3 +652,56 @@ modal_books.addEventListener('click', function (event) {
 });
 
 
+// check the card
+let checkCard = document.getElementById('check-card');
+checkCard.addEventListener('click', function () {
+  let name = document.getElementById('name').value;
+  let number = document.getElementById('number').value;
+
+  let errorDiv = document.getElementById('error-prelogin');
+  errorDiv.textContent = '';
+
+  if (name.trim() === '' || number.trim() === '') {
+    showError("Fields cannot be empty");
+    setTimeout(() => {
+      errorDiv.textContent = '';
+    }, 3000); 
+  }
+  let matchingUser = findMatchingUser(number, name);
+  console.log(matchingUser);
+
+  if (matchingUser === null) {
+    showError("User not found.Try again");
+    setTimeout(() => {
+      errorDiv.textContent = '';
+    }, 3000); 
+  } else {
+    let libraryCard = document.getElementById('library-card');
+    let libraryAfterCheck = document.getElementById('library-after-check');
+    libraryCard.style.display = 'none';
+    libraryAfterCheck.style.display = 'block';
+  }
+
+});
+
+function showError(errorMessage) {
+  let errorDiv = document.getElementById('error-prelogin');
+  errorDiv.textContent = errorMessage;
+}
+
+function findMatchingUser(bookCardNo, userEnteredName) {
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const storedValue = localStorage.getItem(key);
+
+    try {
+      const userData = JSON.parse(storedValue);
+      if (userData.bookCard === bookCardNo && userData.userName === userEnteredName) {
+        return userData;
+      }
+    } catch (error) {
+      console.log("Error parsing JSON for key:", key);
+    }
+  }
+  return null;
+}

@@ -1982,3 +1982,7 @@ input::placeholder {
     background-color: #BB945F;
     transform: rotate(405deg);
 }
+
+.library-after-check{
+    display:none;
+}

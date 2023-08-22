@@ -507,7 +507,7 @@
             <h2 class="sections-title">Digital Library Cards</h2>
             <hr>
         </div>
-        <div class="library-card-info">
+        <div class="library-card-info" id="library-card">
         <div class="user-card-info">
           <h3 class="user-card">Find your Library card</h3>
           <div class="input-field">
@@ -519,8 +519,9 @@
               <label for="number"></label>
               <input type="text" id="number" name="number"  placeholder="Card number" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
             </form>
-            </div>
-              <button class="check-card" type="button">Check the card</button>
+          </div>
+              <button class="check-card" id="check-card" type="button">Check the card</button>
+              <div id="error-prelogin" style="color: red; font-size: 10px; margin-top:2px;"></div>
           </div>
         </div>
         <div class="user-card-info">
@@ -529,6 +530,43 @@
           <div class="log-button">
             <button class="register-new" type="button">Sign Up</button>
             <button class="login-current" type="button">Log in</button>
+          </div>
+        </div>
+      </div>
+      <div class="library-after-check" id="library-after-check">
+        <div class="user-card-info">
+          <h3 class="user-card">Your Library card</h3>
+          <div class="input-field">
+            <div class="login-form">
+              <p>Brooklyn Public Library</p>
+              <span class="userData"></span>
+              <span class="bookNumber"></span>
+            </form>
+          </div>
+          <div class="icon-mng">
+            <div class="icons_sub_mng"> 
+            <h3 class="mng-count">Visits</h3>
+            <img src="assets/icons/my_union.svg" alt="my_union">
+            <p class="visits_count" id="visits_count">1</h2>
+          </div>
+          <div class="icons_sub_mng"> 
+            <h3 class="mng-count">Bonuses</h3>
+            <img src="assets/icons/my_star.svg" alt="my_star">
+            <p class="bonus_count" id="bonus_count">1240</h2>
+            </div>
+            <div class="icons_sub_mng"> 
+            <h3 class="mng-count">Books</h3>
+            <img src="assets/icons/my_book.svg" alt="my_book">
+            <p class="books_count" id="books_count">0</h2>
+          </div>
+          </div>
+          </div>
+        </div>
+        <div class="user-card-info">
+          <h4 class="user-card">Visit your profile</h4>
+          <h5 class="newcard-info">With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.</h5>
+          <div class="log-button">
+            <button class="login-current" type="button">Profile</button>
           </div>
         </div>
       </div>
