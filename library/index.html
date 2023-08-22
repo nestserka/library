@@ -207,19 +207,19 @@
               <div class="design-form-menu">
                 <form id="cardForm" action="">
                   <label for="bankcard">Bank card number</label>
-                  <input type="text" id="bankcard" name="bankcard" pattern="[0-9]{16}" required>
+                  <input type="text" id="bankcard" name="bankcard" pattern="[0-9]{4}( ?[0-9]{4}){3}" required>
                   <label for="expiration-month">Expiration code</label>
-                  <input type="text" id="expiration-month" class="short-input" name="expiration-month" pattern="(0[1-9]|1[0-2])"  required>
-                  <input type="text" id="expiration-year" class="short-input" name="expiration-year" pattern="[0-9]{4}" required>
+                  <input type="text" id="expiration-month" class="short-input" name="expiration-month" pattern="(0[1-9]|1[0-2])" required>
+                  <input type="text" id="expiration-year" class="short-input" name="expiration-year" pattern="\d{2}" required>
                   <label for="cvc">CVC</label>
-                  <input type="text" id="cvc" name="cvc"  class="short-input" pattern="(0[1-9]|1[0-3])" required>
+                  <input type="text" id="cvc" name="cvc" class="short-input" pattern="\d{3}" required>
                   <label for="cardholdername"  class="custom-label">Cardholder name</label>
                   <input type="text" id="cardholdername" name="cardholdername" pattern="^[a-zA-Z]+(?:\s+[a-zA-Z]+)*$" required minlength="3">
                   <label for="postalcode">Postal code</label>
-                  <input type="text" id="postalcode" name="postalcode" pattern="[0-9]{6}" required>
+                  <input type="text" id="postalcode" name="postalcode" pattern="[0-9]*" required>
                   <label for="city">City / Town </label>
                   <input type="text" id="city" name="city" pattern="^[a-zA-Z]+(?:\s+[a-zA-Z]+)*$" required minlength="3">
-                  <button class="buy" id="buy-book" type="submit">Buy</button>
+                  <button class="buy-book" id="buy-book" type="submit">Buy</button>
               </form>
               </div>
               <div class="card_text">

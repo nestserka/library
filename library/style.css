@@ -539,7 +539,7 @@ section .section-title hr {
     text-transform: none;
 }
 
-.action-button button {
+.action-button .buy {
     margin: 0;
     border: 1px solid #000000;
     background-color: white;
@@ -556,7 +556,7 @@ section .section-title hr {
     bottom: 15px;
 }
 
-.action-button button:hover {
+.action-button .buy:hover {
     background-color: #BB945F;
     border-color: #BB945F;
 }
@@ -569,7 +569,7 @@ section .section-title hr {
     right: -40px;
 }
 
-.own-buttom button {
+.action-button .own-button {
     margin: 0;
     border: 1px solid #BB945F;
     background-color: white;
@@ -1936,7 +1936,7 @@ input::placeholder {
     margin-top: 10px;
 }
 
-.design-form-menu .buy {
+.design-form-menu .buy-book {
     margin-top: 10px;
 }
 
