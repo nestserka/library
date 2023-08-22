@@ -680,8 +680,25 @@ checkCard.addEventListener('click', function () {
     let libraryAfterCheck = document.getElementById('library-after-check');
     libraryCard.style.display = 'none';
     libraryAfterCheck.style.display = 'block';
+  
+    let userInitials = document.querySelector(".userInitials");
+    let bookNumber = document.querySelector(".bookNumber");
+  
+    userInitials.textContent = matchingUser.userName + " " + matchingUser.surname;
+    console.log("test " + userInitials.textContent);
+    bookNumber.textContent = number;
+  
+    setTimeout(() => {
+      libraryCard.style.display = 'flex';
+      libraryAfterCheck.style.display = 'none';
+      
+  
+      userInitials.textContent = '';
+      bookNumber.textContent = '';
+      document.getElementById('name').value = '';
+      document.getElementById('number').value = '';      
+    }, 10000);
   }
-
 });
 
 function showError(errorMessage) {
