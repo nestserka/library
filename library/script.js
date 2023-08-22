@@ -13,11 +13,12 @@ let body_login = document.body;
 let close_modal_login = document.getElementById('close_modal_login');
 const navLinks = document.querySelectorAll('.nav-link');
 let  dropdownContentList = document.querySelectorAll('.dropdown-content');
-let buy_books = document.querySelectorAll('.buy');
+let buyButtons = document.querySelectorAll('.buy');
 let checkIfLoggedIn = false;
 let tempKey = null;
 let loginForm = document.getElementById("loginForm");
 let userForm = document.getElementById("userForm");
+let modal_books = document.getElementById('modal-books');
 
 
 // slider
@@ -334,15 +335,6 @@ register_button.addEventListener('click', function() {
 });
 
 
-
-for (let i = 0; i < buy_books.length; i++) {
-  buy_books[i].addEventListener('click', function() {
-    modal_login.classList.add('modal_vis');
-    body_login.classList.add('body_block');
-    });
-}
-
-
 // login
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -461,6 +453,7 @@ function restoreImageOnLogout() {
 function resetFormFields() {
   loginForm.reset();
   userForm.reset();
+  cardForm.reset();
 }
 
  
@@ -496,7 +489,7 @@ for (let i = 0; i < openProfileModals.length; i++) {
     setTimeout(function(){
       modalProfile.classList.add('modal_profile_test');
       body.classList.add('body_block');
-      modal_login.classList.remove('fade-in');
+      modalProfile.classList.remove('fade-in');
     }, 200);
   });
 }
@@ -528,4 +521,60 @@ copyIcon.addEventListener('click', function() {
   setTimeout(() => {
     copyFeedback.style.display = 'none';
   }, 1000);
+});
+
+// card buy menu
+
+
+
+buyButtons.forEach(button => {
+  button.addEventListener('click', function() {
+      let bookId = this.getAttribute("data-book-id");
+      console.log("get" + bookId);
+
+      if (checkIfLoggedIn) {
+              modal_books.classList.add('fade-in');
+              setTimeout(function() {
+                  modal_books.classList.add('modal_buy_books');
+                  body.classList.add('body_block');
+                  modal_books.classList.remove('fade-in');
+              }, 200);
+      } else {
+          modal_login.classList.add('modal_vis');
+          body_login.classList.add('body_block');
+      }
+  });
+});
+
+
+
+let close_buy_button = document.getElementById('close-buy-button');
+
+close_buy_button.addEventListener('click', function() {
+    modal_books.classList.remove('modal_buy_books');
+    body.classList.remove('body_block');
+    resetFormFields();
+});
+
+
+modal_books.addEventListener('click', function(event) {
+  if (event.target === modal_books) {
+      modal_books.classList.remove('modal_buy_books');
+      body.classList.remove('body_block');
+      resetFormFields();
+  }
+});
+
+
+
+// get card numbers
+
+let getBook = document.getElementById("buy-book");
+document.addEventListener("DOMContentLoaded", function () {
+  getBook.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    console.log("test")
+
+  });
 });

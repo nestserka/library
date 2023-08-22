@@ -39,7 +39,8 @@
                 <p class="log-out">Log out</p>
               </div>
                 <div id="modal" class="modal">
-                  <div class="regist-menu">
+                  <div class="regist-form">
+                  <div class="design-form-menu">
                       <span class="close-registation" id="close_modal"></span>
                       <form id="userForm" action="">
                         <h3>Register</h3>
@@ -55,9 +56,11 @@
                     </form>
                       <p>Already have an account? &nbsp;&nbsp;<span class="underline">Login</span></p>
                   </div>
+                </div>
               </div>
               <div id="modal-login" class="modal-login">
                 <div class="login-menu">
+                <div class="design-form-menu">
                     <span class="close-registation" id="close_modal_login"></span>
                     <form id="loginForm" action="">
                         <h3>Login</h3>
@@ -71,6 +74,7 @@
                     <p>Dont's have an account? &nbsp;&nbsp;<span class="underline-register">Register</span></p>
                 </div>
             </div>
+          </div>
             <div class="modal-profile" id="modal-profile">
               <div class="profile_design">
               <span class="close-profile" id="close-profile"></span>
@@ -195,6 +199,37 @@
             </div>
           </div>
         </div>
+        <div class="modal-books" id="modal-books">
+          <div class="books-buy">
+            <span class="close-buy-button" id="close-buy-button"></span>
+            <div class="buy-title"><h3 class="buy-libary-card">Buy a library card</h3></div>
+            <div class="card-info">
+              <div class="design-form-menu">
+                <form id="cardForm" action="">
+                  <label for="bankcard">Bank card number</label>
+                  <input type="text" id="bankcard" name="bankcard" pattern="[0-9]{16}" required>
+                  <label for="expiration-month">Expiration code</label>
+                  <input type="text" id="expiration-month" class="short-input" name="expiration-month" pattern="(0[1-9]|1[0-2])"  required>
+                  <input type="text" id="expiration-year" class="short-input" name="expiration-year" pattern="[0-9]{4}" required>
+                  <label for="cvc">CVC</label>
+                  <input type="text" id="cvc" name="cvc"  class="short-input" pattern="(0[1-9]|1[0-3])" required>
+                  <label for="cardholdername"  class="custom-label">Cardholder name</label>
+                  <input type="text" id="cardholdername" name="cardholdername" pattern="^[a-zA-Z]+(?:\s+[a-zA-Z]+)*$" required minlength="3">
+                  <label for="postalcode">Postal code</label>
+                  <input type="text" id="postalcode" name="postalcode" pattern="[0-9]{6}" required>
+                  <label for="city">City / Town </label>
+                  <input type="text" id="city" name="city" pattern="^[a-zA-Z]+(?:\s+[a-zA-Z]+)*$" required minlength="3">
+                  <button class="buy" id="buy-book" type="submit">Buy</button>
+              </form>
+              </div>
+              <div class="card_text">
+                <p>If you are live, work, attend school, or pay property taxes in New York State, you can get a $25 digital library card right now using this online form. Visitors to New York State can also use this form to apply for a temporary card.
+                </p>
+            </div>
+        </div>
+        <p class="amount">&#36; 25.00</p>
+        </div>
+      </div>
            <div class="books">
             <div class="books-slider-container">
               <div class="card">
@@ -204,7 +239,7 @@
                   <h4 class="author">The Book Eaters <br><span> By Sunyi Dean </span></h4>
                   <h5>An unusual sci-fi story about a book eater woman who tries desperately to save her dangerous mind-eater son from tradition and certain death. Complete with dysfunctional family values, light Sapphic romance, and a strong, complex protagonist. Not for the faint of heart. </h5>
                 <div class="action-button">
-                  <button class="buy" type="button">Buy</button>
+                  <button class="buy" type="button" data-book-id="1">Buy</button>
                 </div>
               </div>
               <div class="card">
@@ -214,7 +249,7 @@
                   <h4 class="author">Cackle <br><span>By Rachel Harrison</span></h4>
                   <h5>Are your Halloween movies of choice The Witches of Eastwick and Practical Magic? Look no further than here - where a woman recovering from a breakup moves to a quaint town in upstate New York and befriends a beautiful witch.</h5>
                 <div class="action-button">
-                  <button class="buy" type="button">Buy</button>
+                  <button class="buy" type="button" data-book-id="2">Buy</button>
                 </div>
               </div>
               <div class="card">
@@ -224,7 +259,7 @@
                   <h4 class="author"> Dante: Poet of the Secular World <br><span>By Rachel Harrison</span></h4>
                   <h5>Auerbach's engaging book places the 'Comedy' within the tradition of epic, tragedy, and philosophy in general, arguing for Dante's uniqueness as one who raised the individual and his drama of soul into something of divine significance—an inspired introduction to Dante's main themes.</h5>
                 <div class="action-button">
-                  <button class="buy" type="button">Buy</button>
+                  <button class="buy" type="button" data-book-id="3">Buy</button>
                 </div>
               </div>
               <div class="card">
@@ -234,7 +269,7 @@
                   <h4 class="author">The Last Queen<br><span>By Clive Irving</span></h4>
                   <h5>A timely and revelatory new biography of Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as the modern world has changed around them.</h5>
                   <div class="action-button">
-                    <button class="buy" type="button">Buy</button>
+                    <button class="buy" type="button" data-book-id="4">Buy</button>
                   </div>
               </div>
             </div>
@@ -246,7 +281,7 @@
                 <h4 class="author">The Body<br><span>By Stephen King</span></h4>
                 <h5>Powerful novel that takes you back to a nostalgic time, exploring both the beauty and danger and loss of innocence that is youth.</h5>
                 <div class="action-button">
-                  <button class="buy" type="button">Buy</button>
+                  <button class="buy" type="button" data-book-id="5">Buy</button>
                 </div>
             </div>
             <div class="card"> 
@@ -256,7 +291,7 @@
               <h4 class="author">Carry: A Memoir of Survival on Stolen Lan<br><span>By Toni Jenson</span></h4>
               <h5>This memoir about the author's relationship with gun violence feels both expansive and intimate, resulting in a lyrical indictment of the way things are.</h5>
               <div class="action-button">
-                <button class="buy" type="button">Buy</button>
+                <button class="buy" type="button" data-book-id="6">Buy</button>
               </div>
           </div>
           <div class="card"> 
@@ -266,7 +301,7 @@
             <h4 class="author">Days of Distraction<br><span>By Alexandra Chang</span></h4>
             <h5>A sardonic view of Silicon Valley culture, a meditation on race, and a journal of displacement and belonging, all in one form-defying package of spare prose.</h5>
             <div class="action-button">
-              <button class="buy" type="button">Buy</button>
+              <button class="buy" type="button" data-book-id="7">Buy</button>
             </div>
         </div>
         <div class="card"> 
@@ -276,7 +311,7 @@
           <h4 class="author">Dominicana<br><span>By Angie Cruz</span></h4>
           <h5>A fascinating story of a teenage girl who marries a man twice her age with the promise to bring her to America. Her marriage is an opportunity for her family to eventually immigrate. For fans of Isabel Allende and Julia Alvarez.</h5>
           <div class="action-button">
-            <button class="buy" type="button">Buy</button>
+            <button class="buy" type="button" data-book-id="8">Buy</button>
           </div>
       </div>
     </div>
@@ -288,7 +323,7 @@
         <h4 class="author">Crude: A Memoir<br><span>By Pablo Fajardo & ​​Sophie Tardy-Joubert</span></h4>
         <h5>Drawing and color by Damien Roudeau | This book illustrates the struggles of a group of indigenous Ecuadoreans as they try to sue the ChevronTexaco company for damage their oil fields did to the Amazon and her people</h5>
         <div class="action-button">
-          <button class="buy" type="button">Buy</button>
+          <button class="buy" type="button" data-book-id="9">Buy</button>
         </div>
     </div>
     <div class="card"> 
@@ -298,7 +333,7 @@
       <h4 class="author">Let My People Go Surfing<br><span>By Yvon Chouinard</span></h4>
       <h5>Chouinard—climber, businessman, environmentalist—shares tales of courage and persistence from his experience of founding and leading Patagonia, Inc. Full title: Let My People Go Surfing: The Education of a Reluctant Businessman, Including 10 More Years of Business Unusual.</h5>
       <div class="action-button">
-        <button class="buy" type="button">Buy</button>
+        <button class="buy" type="button" data-book-id="10">Buy</button>
       </div>
   </div>
   <div class="card"> 
@@ -308,7 +343,7 @@
     <h4 class="author">The Octopus Museum: Poems<br><span>By Brenda Shaughnessy</span></h4>
     <h5>This collection of bold and scathingly beautiful feminist poems imagines what comes after our current age of environmental destruction, racism, sexism, and divisive politics.</h5>
     <div class="action-button">
-      <button class="buy" type="button">Buy</button>
+      <button class="buy" type="button" data-book-id="11">Buy</button>
     </div>
 </div>
 <div class="card"> 
@@ -318,7 +353,7 @@
   <h4 class="author">Shark Dialogues: A Novel<br><span>By Kiana Davenport</span></h4>
   <h5>An epic saga of seven generations of one family encompasses the tumultuous history of Hawaii as a Hawaiian woman gathers her four granddaughters together in an erotic tale of villains and dreamers, queens and revolutionaries, lepers and healers.</h5>
   <div class="action-button">
-    <button class="buy" type="button">Buy</button>
+    <button class="buy" type="button" data-book-id="12">Buy</button>
   </div>
 </div>
 </div>
@@ -330,7 +365,7 @@
   <h4 class="author">Casual Conversation<br><span>By Renia White</span></h4>
   <h5>White's impressive debut collection takes readers through and beyond the concepts of conversation and the casual - both what we say to each other and what we don't, examining the possibilities around how we construct and communicate identity. </h5>
   <div class="action-button">
-    <button class="buy" type="button">Buy</button>
+    <button class="buy" type="button" data-book-id="13">Buy</button>
   </div>
 </div>
 <div class="card"> 
@@ -340,7 +375,7 @@
   <h4 class="author">The Great Fire<br><span>By Lou Ureneck</span></h4>
   <h5>The harrowing story of an ordinary American and a principled Naval officer who, horrified by the burning of Smyrna, led an extraordinary rescue effort that saved a quarter of a million refugees from the Armenian Genocide</h5>
   <div class="action-button">
-    <button class="buy" type="button">Buy</button>
+    <button class="buy" type="button" data-book-id="14">Buy</button>
   </div>
 </div>
 <div class="card"> 
@@ -350,7 +385,7 @@
   <h4 class="author">Rickey: The Life and Legend<br><span>By Howard Bryant</span></h4>
   <h5>With the fall rolling around, one can't help but think of baseball's postseason coming up! And what better way to prepare for it than reading the biography of one of the game's all-time greatest performers, the Man of Steal, Rickey Henderson?</h5>
   <div class="action-button">
-    <button class="buy" type="button">Buy</button>
+    <button class="buy" type="button" data-book-id="15">Buy</button>
   </div>
 </div>
 <div class="card"> 
@@ -360,7 +395,7 @@
   <h4 class="author">Slug: And Other Stories<br><span>By Megan Milks</span></h4>
   <h5>Exes Tegan and Sara find themselves chained together by hairballs of codependency. A father and child experience the shared trauma of giving birth to gods from their wounds.</h5>
   <div class="action-button">
-    <button class="buy" type="button">Buy</button>
+    <button class="buy" type="button" data-book-id="16">Buy</button>
   </div>
 </div>
 </div>
