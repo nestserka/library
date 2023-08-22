@@ -207,7 +207,7 @@
               <div class="design-form-menu">
                 <form id="cardForm" action="">
                   <label for="bankcard">Bank card number</label>
-                  <input type="text" id="bankcard" name="bankcard" pattern="[0-9]{4}( ?[0-9]{4}){3}" required>
+                  <input type="text" id="bankcard" name="bankcard" pattern="^\d{4}(\s?\d{4}){3}$" required>
                   <label for="expiration-month">Expiration code</label>
                   <input type="text" id="expiration-month" class="short-input" name="expiration-month" pattern="(0[1-9]|1[0-2])" required>
                   <input type="text" id="expiration-year" class="short-input" name="expiration-year" pattern="\d{2}" required>

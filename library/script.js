@@ -50,6 +50,19 @@ window.onload = function () {
       checkIfLoggedIn = true;
       tempKey = userData.bookCard;
       updateProfileImage(userData);
+
+
+      userData.numberOfBook.forEach((item) => {
+        console.log(item)
+        const selector = `button[data-book-id="${item}"]`;
+        const button = document.querySelector(selector);
+        if (button) {
+          button.classList.remove("buy");
+          button.classList.add("own-button");
+          button.disabled = true;
+          button.textContent = 'Own';
+        }
+      });
       break;
     }
   }
@@ -383,6 +396,19 @@ document.addEventListener("DOMContentLoaded", function () {
     updateProfileImage(user);
     checkIfLoggedIn = true;
     tempKey = user.bookCard;
+    if (user.numberOfBook != null) { 
+    user.numberOfBook.forEach((item) => {
+      console.log(item)
+      const selector = `button[data-book-id="${item}"]`;
+      const button = document.querySelector(selector);
+      if (button) {
+        button.classList.remove("buy");
+        button.classList.add("own-button");
+        button.disabled = true;
+        button.textContent = 'Own';
+      }
+    });
+  }
 
     modal_login.classList.add('modal_fade');
     setTimeout(function () {
@@ -441,6 +467,17 @@ logoutBtn.addEventListener('click', function () {
   localStorage.setItem(tempKey, JSON.stringify(userData));
   checkIfLoggedIn = false;
   tempKey = null;
+  userData.numberOfBook.forEach((item) => {
+    console.log(item)
+    const selector = `button[data-book-id="${item}"]`;
+    const button = document.querySelector(selector);
+    if (button) {
+      button.classList.remove("own-button");
+      button.classList.add("buy");
+      button.disabled = true;
+      button.textContent = 'Buy';
+    }
+  });
   restoreImageOnLogout()
 });
 
@@ -530,23 +567,25 @@ buyButtons.forEach(button => {
   button.addEventListener('click', function () {
     let bookId = this.getAttribute("data-book-id");
     console.log("get" + bookId);
+
     let storedValue = localStorage.getItem(tempKey);
     let userData = JSON.parse(storedValue);
-    if (!userData.enteredCard && checkIfLoggedIn) {
-      modal_books.classList.add('fade-in');
-      setTimeout(function () {
-        modal_books.classList.add('modal_buy_books');
-        body.classList.add('body_block');
-        modal_books.classList.remove('fade-in');
-      }, 200);
-    } else if (checkIfLoggedIn && userData.enteredCard) {
-      updateBookValue(bookId)
+
+    if (userData && userData.enteredCard !== null) {
+      if (!userData.enteredCard && checkIfLoggedIn) {
+        modal_books.classList.add('fade-in');
+        setTimeout(function () {
+          modal_books.classList.add('modal_buy_books');
+          body.classList.add('body_block');
+          modal_books.classList.remove('fade-in');
+        }, 200);
+      } else if (userData.enteredCard) {
+        updateBookValue(bookId);
+      }
     } else {
       modal_login.classList.add('modal_vis');
       body_login.classList.add('body_block');
     }
-
-
 
     document.getElementById("cardForm").addEventListener("submit", function (event) {
       event.preventDefault();
