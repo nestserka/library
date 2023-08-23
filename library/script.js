@@ -50,6 +50,7 @@ window.onload = function () {
       checkIfLoggedIn = true;
       tempKey = userData.bookCard;
       updateProfileImage(userData);
+      updateDigitalCardform(userData)
 
       if (userData.numberOfBook) {
         userData.numberOfBook.forEach((item) => {
@@ -404,6 +405,7 @@ document.addEventListener("DOMContentLoaded", function () {
     user.isLoggedIn = true;
     localStorage.setItem(user.bookCard, JSON.stringify(user));
     updateProfileImage(user);
+    updateDigitalCardform(user);
     checkIfLoggedIn = true;
     tempKey = user.bookCard;
     if (user.numberOfBook != null) { 
@@ -490,6 +492,7 @@ logoutBtn.addEventListener('click', function () {
   });
 }
   restoreImageOnLogout()
+  restoreDigitalCardForm();
 });
 
 
@@ -687,7 +690,7 @@ checkCard.addEventListener('click', function () {
   console.log(matchingUser);
 
   if (matchingUser === null) {
-    showError("User not found.Try again");
+    showError("Please enter fullname (name and surname). And try again.");
     setTimeout(() => {
       errorDiv.textContent = '';
     }, 3000); 
@@ -723,13 +726,18 @@ function showError(errorMessage) {
 }
 
 function findMatchingUser(bookCardNo, userEnteredName) {
+  const trimmedName = userEnteredName.trim(); 
+  const nameParts = trimmedName.split(/\s+/);
+  console.log(nameParts);
+  const firstName = nameParts[0];
+  const lastName = nameParts.slice(1).join(" ");
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
     const storedValue = localStorage.getItem(key);
 
     try {
-      const userData = JSON.parse(storedValue);
-      if (userData.bookCard === bookCardNo && userData.userName === userEnteredName) {
+      const userData = JSON.parse(storedValue); 
+      if (userData.bookCard === bookCardNo && userData.userName === firstName && userData.surname === lastName ) {
         return userData;
       }
     } catch (error) {
@@ -737,4 +745,51 @@ function findMatchingUser(bookCardNo, userEnteredName) {
     }
   }
   return null;
+}
+
+function updateDigitalCardform(value){
+  let libraryCard = document.getElementById('library-card');
+  let libraryAfterCheck = document.getElementById('library-after-check');
+  libraryCard.style.display = 'none';
+  libraryAfterCheck.style.display = 'block';
+
+  let userInitials = document.querySelector(".userInitials");
+  let bookNumber = document.querySelector(".bookNumber");
+
+  userInitials.textContent = value.userName + " " + value.surname;
+  console.log("test " + userInitials.textContent);
+  bookNumber.textContent = value.bookCard;
+
+  let beforeLogin = document.getElementById('wrapper-before-login');
+  let afterLogin = document.getElementById('wrapper-after-login');
+  beforeLogin.style.display = 'none';
+  afterLogin.style.display = 'block';
+
+}
+
+
+function restoreDigitalCardForm(){
+  let beforeLogin = document.getElementById('wrapper-before-login');
+  let afterLogin = document.getElementById('wrapper-after-login');
+  beforeLogin.style.display ='block';
+  afterLogin.style.display = 'none';
+
+
+  let userInitials = document.querySelector(".userInitials");
+  let bookNumber = document.querySelector(".bookNumber");
+
+  userInitials.textContent = matchingUser.userName + " " + matchingUser.surname;
+  bookNumber.textContent = number;
+
+  let libraryCard = document.getElementById('library-card');
+  let libraryAfterCheck = document.getElementById('library-after-check');
+
+  libraryCard.style.display = 'flex';
+  libraryAfterCheck.style.display = 'none';
+
+  userInitials.textContent = '';
+  bookNumber.textContent = '';
+  document.getElementById('name').value = '';
+  document.getElementById('number').value = '';      
+
 }

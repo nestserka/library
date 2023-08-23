@@ -2061,3 +2061,8 @@ input::placeholder {
 .wrapper-after-check.login-form {
    margin: 20px 20px 15px 20px;;
 }
+
+
+.wrapper-after-login{
+    display:none;
+}
