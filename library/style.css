@@ -1918,7 +1918,7 @@ input::placeholder {
     padding: 0;
 }
 
-.card-info {
+.card-info-after-login {
     display: flex;
     flex-direction: row;
     width: 200;
