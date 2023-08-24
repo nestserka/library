@@ -331,6 +331,7 @@ document.addEventListener("DOMContentLoaded", function () {
     checkIfLoggedIn = true;
     tempKey = bookCard;
     updateProfileImage(user);
+    updateDigitalCardform(user);
     modal.classList.add('modal_fade');
     setTimeout(function () {
       modal.classList.remove('modal_vis');
@@ -773,13 +774,6 @@ function restoreDigitalCardForm(){
   let afterLogin = document.getElementById('wrapper-after-login');
   beforeLogin.style.display ='block';
   afterLogin.style.display = 'none';
-
-
-  let userInitials = document.querySelector(".userInitials");
-  let bookNumber = document.querySelector(".bookNumber");
-
-  userInitials.textContent = matchingUser.userName + " " + matchingUser.surname;
-  bookNumber.textContent = number;
 
   let libraryCard = document.getElementById('library-card');
   let libraryAfterCheck = document.getElementById('library-after-check');
