@@ -585,8 +585,16 @@ copyIcon.addEventListener('click', function () {
 buyButtons.forEach(button => {
   button.addEventListener('click', function () {
     let bookId = this.getAttribute("data-book-id");
-    console.log("get" + bookId);
-
+    let card = this.closest('.card'); 
+    let authorElement = card.querySelector('.author');
+    let authorText = authorElement.textContent;
+    let byIndex = authorText.indexOf('By');
+    let bookName = authorText.substring(0, byIndex).trim();
+    let bookAuthor = authorText.substring(byIndex + 2).trim();
+        
+        console.log("Book Name: ", bookName);
+        console.log("Book Author: ", bookAuthor);
+ 
     let storedValue = localStorage.getItem(tempKey);
     let userData = JSON.parse(storedValue);
 
@@ -599,7 +607,7 @@ buyButtons.forEach(button => {
           modal_books.classList.remove('fade-in');
         }, 200);
       } else if (userData.enteredCard) {
-        updateBookValue(bookId);
+        updateBookValue(bookId, bookName, bookAuthor);
       }
     } else {
       modal_login.classList.add('modal_vis');
@@ -614,7 +622,7 @@ buyButtons.forEach(button => {
       try {
         localStorage.setItem(tempKey, JSON.stringify(userData));
         console.log("Data successfully updated in local storage.");
-        updateBookValue(bookId);
+        updateBookValue(bookId,bookName, bookAuthor);
         modal_books.classList.remove('modal_buy_books');
         body.classList.remove('body_block');
       } catch (error) {
@@ -624,24 +632,28 @@ buyButtons.forEach(button => {
   });
 });
 
-function updateBookValue(id) {
+function updateBookValue(id, novel, author) {
   let storedValue = localStorage.getItem(tempKey);
   let userData = JSON.parse(storedValue);
   if (!userData.numberOfBook) {
     userData.numberOfBook = [];
   }
+  if (!userData.rentedList) {
+    userData.rentedList = [];
+  }
   userData.numberOfBook.push(id);
   userData.booksOwn += 1;
+
+  const rentedBook = {
+    novel: novel,
+    author: author
+  };
+
+  userData.rentedList.push(rentedBook);
   try {
     localStorage.setItem(tempKey, JSON.stringify(userData));
-    console.log("Data successfully updated in local storage.");
-
     const selector = `button[data-book-id="${id}"]`;
-    console.log("Selector:", selector);
-
     const button = document.querySelector(selector);
-    console.log("Button:", button);
-
     if (button) {
       button.classList.remove("buy");
       button.classList.add("own-button");
