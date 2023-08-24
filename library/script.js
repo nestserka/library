@@ -268,13 +268,6 @@ for (let i = 0; i < open_login_modals.length; i++) {
   open_login_modals[i].addEventListener('click', openModal);
 }
 
-// for (let i = 0; i < open_login_modals.length; i++) {
-//   open_login_modals[i].addEventListener('click', function () {
-//     modal_login.classList.add('modal_vis');
-//     body_login.classList.add('body_block');
-//   });
-// }
-
 close_modal_login.addEventListener('click', function () {
   modal_login.classList.add('modal_fade');
   setTimeout(function () {
@@ -407,6 +400,7 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem(user.bookCard, JSON.stringify(user));
     updateProfileImage(user);
     updateDigitalCardform(user);
+    updateUserIconInfo(user);
     checkIfLoggedIn = true;
     tempKey = user.bookCard;
     if (user.numberOfBook != null) { 
@@ -479,6 +473,18 @@ logoutBtn.addEventListener('click', function () {
   localStorage.setItem(tempKey, JSON.stringify(userData));
   checkIfLoggedIn = false;
   tempKey = null;
+
+  const visits = document.querySelectorAll(".visits_count");
+  visits.forEach(visit => {
+    visit.textContent = '';
+  });
+
+
+  const myBooks = document.querySelectorAll('.books_count');
+  myBooks.forEach(book => {
+    book.textContent = '';
+  });
+
   if (userData.numberOfBook) {
   userData.numberOfBook.forEach((item) => {
     console.log(item)
@@ -517,39 +523,47 @@ let closeProfile = document.getElementById('close-profile');
 let openProfileModals = document.querySelectorAll('.my-profile');
 
 
-for (let i = 0; i < openProfileModals.length; i++) {
-  openProfileModals[i].addEventListener('click', function () {
-    if (!checkIfLoggedIn){
-      openModal()
-    } else {
-    let sectionsTitle = document.querySelector(".card_number");
-    sectionsTitle.textContent = tempKey;
+document.addEventListener('DOMContentLoaded', function () {
+  openProfileModals.forEach(modal => {
+    modal.addEventListener('click', function () {
+      if (!checkIfLoggedIn) {
+        openModal();
+      } else {
+        const sectionsTitle = document.querySelector(".card_number");
+        sectionsTitle.textContent = tempKey;
+
+        const storedValue = localStorage.getItem(tempKey);
+        const userData = JSON.parse(storedValue);
+        updateUserIconInfo(userData);
 
 
-    let storedValue = localStorage.getItem(tempKey);
-    let userData = JSON.parse(storedValue);
+        if (userData.rentedList) {
+          const rentedBooksList = document.querySelector('.rented-books-list ul');
+          rentedBooksList.innerHTML = '';
+          const transformedRentedList = Object.values(userData.rentedList);
+          transformedRentedList.forEach(book => {
+            const li = document.createElement('li');
+            li.textContent = `${book.novel}, ${book.author}`;
+            rentedBooksList.appendChild(li);
+          });
+        }
 
-    let visits = document.querySelector(".visits_count");
-    visits.textContent = userData.visit;
+        const initialsMain = document.querySelector(".initials-main");
+        const initialsSub = document.querySelector(".initials-sub");
+        const initials = (userData.userName[0] || "") + (userData.surname[0] || "");
+        initialsMain.textContent = initials;
+        initialsSub.textContent = userData.userName + " " + userData.surname;
 
-    let my_books = document.querySelector(".books_count");
-    my_books.textContent = userData.booksOwn;
-
-    let initials_main = document.querySelector(".initials-main");
-    let initials_sub = document.querySelector(".initials-sub");
-    let initials = (userData.userName[0] || "") + (userData.surname[0] || "");
-    initials_main.textContent = initials;
-    initials_sub.textContent = userData.userName + " " + userData.surname;
-
-    modalProfile.classList.add('fade-in');
-    setTimeout(function () {
-      modalProfile.classList.add('modal_profile_test');
-      body.classList.add('body_block');
-      modalProfile.classList.remove('fade-in');
-    }, 200);
-  }
-  }); 
-}
+        modalProfile.classList.add('fade-in');
+        setTimeout(function () {
+          modalProfile.classList.add('modal_profile_test');
+          body.classList.add('body_block');
+          modalProfile.classList.remove('fade-in');
+        }, 200);
+      }
+    });
+  });
+});
 
 modalProfile.addEventListener('click', function (event) {
   if (event.target === modalProfile) {
@@ -793,9 +807,27 @@ function restoreDigitalCardForm(){
   libraryCard.style.display = 'flex';
   libraryAfterCheck.style.display = 'none';
 
+  let userInitials = document.querySelector(".userInitials");
+  let bookNumber = document.querySelector(".bookNumber");
+
   userInitials.textContent = '';
   bookNumber.textContent = '';
   document.getElementById('name').value = '';
   document.getElementById('number').value = '';      
 
+}
+
+
+
+
+function updateUserIconInfo(value){
+  const visits = document.querySelectorAll(".visits_count");
+  visits.forEach(visit => {
+    visit.textContent = value.visit;
+  });
+
+  const myBooks = document.querySelectorAll('.books_count');
+  myBooks.forEach(book => {
+    book.textContent = value.booksOwn;
+  });
 }

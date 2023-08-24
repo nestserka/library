@@ -1792,7 +1792,7 @@ input::placeholder {
 }
 
 .profile-description ul {
-    margin: 30px 0;
+    margin:0;
     padding: 0 28px;
 }
 
@@ -2065,4 +2065,10 @@ input::placeholder {
 
 .wrapper-after-login{
     display:none;
+}
+
+.rented-books-list {
+    max-height: 50px; 
+    overflow: auto; 
+    margin:30px 0;
 }
