@@ -307,6 +307,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var key = bookCard;
     var isLoggedIn = true;
     var booksOwn = 0;
+    var enteredCard = false;
 
     const user = {
       userName,
@@ -316,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
       visit,
       bookCard,
       isLoggedIn,
-      booksOwn
+      booksOwn, enteredCard
     };
 
     localStorage.setItem(key, JSON.stringify(user));
@@ -522,8 +523,6 @@ let modalProfile = document.getElementById('modal-profile');
 let closeProfile = document.getElementById('close-profile');
 let openProfileModals = document.querySelectorAll('.my-profile');
 
-
-document.addEventListener('DOMContentLoaded', function () {
   openProfileModals.forEach(modal => {
     modal.addEventListener('click', function () {
       if (!checkIfLoggedIn) {
@@ -563,7 +562,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
-});
 
 modalProfile.addEventListener('click', function (event) {
   if (event.target === modalProfile) {
@@ -595,7 +593,7 @@ copyIcon.addEventListener('click', function () {
 });
 
 // card buy menu
-
+document.addEventListener('DOMContentLoaded', function () {
 buyButtons.forEach(button => {
   button.addEventListener('click', function () {
     let bookId = this.getAttribute("data-book-id");
@@ -645,6 +643,7 @@ buyButtons.forEach(button => {
     });
   });
 });
+});
 
 function updateBookValue(id, novel, author) {
   let storedValue = localStorage.getItem(tempKey);
@@ -668,6 +667,7 @@ function updateBookValue(id, novel, author) {
     localStorage.setItem(tempKey, JSON.stringify(userData));
     const selector = `button[data-book-id="${id}"]`;
     const button = document.querySelector(selector);
+    updateUserIconInfo(userData)
     if (button) {
       button.classList.remove("buy");
       button.classList.add("own-button");
