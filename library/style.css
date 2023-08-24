@@ -1685,6 +1685,7 @@ input::placeholder {
     display: flex;
     flex-direction: row;
     height: 100%;
+    position: relative;
 }
 
 .main-icon {
@@ -1800,7 +1801,9 @@ input::placeholder {
 .clipboard {
     display: flex;
     flex-direction: row;
-    gap: 15px
+    gap: 15px;
+    position: absolute;
+    bottom:40px;
 }
 
 .card_title {

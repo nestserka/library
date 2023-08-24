@@ -538,6 +538,7 @@ let openProfileModals = document.querySelectorAll('.my-profile');
 
         if (userData.rentedList) {
           const rentedBooksList = document.querySelector('.rented-books-list ul');
+
           rentedBooksList.innerHTML = '';
           const transformedRentedList = Object.values(userData.rentedList);
           transformedRentedList.forEach(book => {
