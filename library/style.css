@@ -1329,7 +1329,7 @@ input::placeholder {
     position: absolute;
     z-index: 5;
     padding: 5px 1px;
-    transform: translateX(-60%);
+    transform: translateX(-63%) translateY(2%);
 }
 
 .dropdown-content .sections-title {
