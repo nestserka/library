@@ -438,7 +438,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 function updateProfileImage(user) {
-  let initials = (user.userName[0] || "") + (user.surname[0] || "");
+  const userNameInitial = user.userName.charAt(0).toUpperCase();
+  const surnameInitial = user.surname.charAt(0).toUpperCase();
+  const initials = userNameInitial + surnameInitial;
   let canvas = document.createElement("canvas");
   let ctx = canvas.getContext("2d");
 
@@ -550,9 +552,13 @@ let openProfileModals = document.querySelectorAll('.my-profile');
 
         const initialsMain = document.querySelector(".initials-main");
         const initialsSub = document.querySelector(".initials-sub");
-        const initials = (userData.userName[0] || "") + (userData.surname[0] || "");
+        const userNameInitial = userData.userName.charAt(0).toUpperCase();
+        const surnameInitial = userData.surname.charAt(0).toUpperCase();
+        const initials = userNameInitial + surnameInitial;
+        const userName = userData.userName.charAt(0).toUpperCase() + userData.userName.slice(1).toLowerCase();
+        const surname = userData.surname.charAt(0).toUpperCase() + userData.surname.slice(1).toLowerCase();
         initialsMain.textContent = initials;
-        initialsSub.textContent = userData.userName + " " + userData.surname;
+        initialsSub.textContent =  userName + " " +surname;
 
         modalProfile.classList.add('fade-in');
         setTimeout(function () {
@@ -784,7 +790,10 @@ function updateDigitalCardform(value){
   let userInitials = document.querySelector(".userInitials");
   let bookNumber = document.querySelector(".bookNumber");
 
-  userInitials.textContent = value.userName + " " + value.surname;
+  const userName = value.userName.charAt(0).toUpperCase() + value.userName.slice(1).toLowerCase();
+  const surname = value.surname.charAt(0).toUpperCase() + value.surname.slice(1).toLowerCase();
+
+  userInitials.textContent =  userName + " " + surname;
   console.log("test " + userInitials.textContent);
   bookNumber.textContent = value.bookCard;
 

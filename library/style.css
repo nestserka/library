@@ -1685,7 +1685,6 @@ input::placeholder {
     display: flex;
     flex-direction: row;
     height: 100%;
-    position: relative;
 }
 
 .main-icon {
@@ -1704,11 +1703,15 @@ input::placeholder {
     margin: 0 20px;
 }
 
+/* TODO need testing  */
+
 .rectangle {
     width: 120px;
     min-height: 30px;
     background-color: #FFF;
     padding: 5px 0;
+    word-break: normal;
+    overflow-wrap: break-word;
 }
 
 .profile-description {
