@@ -1,3 +1,7 @@
+console.log(" Score: 200,\nЭтап 1: Пользователь не зарегистрирован\na) Ограниченная карусель в блоке About +\nb) Слайдер в блоке Favorites +\nc) До регистрации +\nd)  До авторизации +\n\nЭтап 2: Пользователь на этапе регистрации +\nЭтап 3: Пользователь на этапе входа в учётную запись после регистрации +\nЭтап 4: Пользователь после входа в учётную запись +");
+
+
+
 // variables
 const burger = document.querySelector('.burger');
 const originalSrc = document.getElementById('profileImage').src;
@@ -747,7 +751,6 @@ checkCard.addEventListener('click', function () {
     const surname =  matchingUser.surname.charAt(0).toUpperCase() +  matchingUser.surname.slice(1).toLowerCase();
   
     userInitials.textContent = userName + " " + surname;
-    console.log("test " + userInitials.textContent);
     bookNumber.textContent = number;
   
     setTimeout(() => {
@@ -803,7 +806,6 @@ function updateDigitalCardform(value){
   const surname = value.surname.charAt(0).toUpperCase() + value.surname.slice(1).toLowerCase();
 
   userInitials.textContent =  userName + " " + surname;
-  console.log("test " + userInitials.textContent);
   bookNumber.textContent = value.bookCard;
 
   let beforeLogin = document.getElementById('wrapper-before-login');
