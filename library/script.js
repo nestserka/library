@@ -503,6 +503,7 @@ logoutBtn.addEventListener('click', function () {
 }
   restoreImageOnLogout()
   restoreDigitalCardForm();
+  clearRentedBooksList();
 });
 
 
@@ -510,6 +511,11 @@ function restoreImageOnLogout() {
   const profileImage = document.getElementById('profileImage');
   profileImage.src = originalSrc;
   profileImage.title = "";
+}
+
+function clearRentedBooksList() {
+  const rentedBooksList = document.querySelector('.rented-books-list ul');
+  rentedBooksList.innerHTML = '';
 }
 
 function resetFormFields() {
@@ -587,16 +593,16 @@ const copyIcon = document.getElementById('copy-icon');
 const cardNumber = document.querySelector(".card_number");
 const copyFeedback = document.getElementById('copy-feedback');
 
-copyIcon.addEventListener('click', function () {
-  const range = document.createRange();
-  range.selectNode(cardNumber);
-  window.getSelection().addRange(range);
-  document.execCommand('copy');
-  window.getSelection().removeAllRanges();
-  copyFeedback.style.display = 'inline';
-  setTimeout(() => {
-    copyFeedback.style.display = 'none';
-  }, 1000);
+copyIcon.addEventListener('click', async function () {
+  try {
+    await navigator.clipboard.writeText(cardNumber.textContent);
+    copyFeedback.style.display = 'inline';
+    setTimeout(() => {
+      copyFeedback.style.display = 'none';
+    }, 1000);
+  } catch (error) {
+    console.error('Failed to copy: ', error);
+  }
 });
 
 // card buy menu
@@ -736,8 +742,11 @@ checkCard.addEventListener('click', function () {
   
     let userInitials = document.querySelector(".userInitials");
     let bookNumber = document.querySelector(".bookNumber");
+
+    const userName =  matchingUser.userName.charAt(0).toUpperCase() + matchingUser.userName.slice(1).toLowerCase();
+    const surname =  matchingUser.surname.charAt(0).toUpperCase() +  matchingUser.surname.slice(1).toLowerCase();
   
-    userInitials.textContent = matchingUser.userName + " " + matchingUser.surname;
+    userInitials.textContent = userName + " " + surname;
     console.log("test " + userInitials.textContent);
     bookNumber.textContent = number;
   
