@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <link rel="icon" href="icons/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Player</title>
+</head>
+<body>
+    <main class="blur-group">
+            <div class="blurred"></div>
+    <div class="player">
+        <div class="wrapper">
+            <div class="details">
+                <div class="now-playing"></div>
+                <duv class="track-art"></duv>
+                <div class="track-name"></div>
+                <div class="track-artist"></div>
+            </div>
+            <div class="buttons">
+                <div class="random-track">
+                    <img class="random_img" src="icons/shuffle.png" alt="Random">
+                </div>
+                <div class="prev-track">
+                    <img class="prev" src="icons/previous.png" alt="Previous">
+                </div>
+                <div class="playpause-track">
+                    <img class="pause" src="icons/pause.png" alt="Pause">
+                </div>
+                <div class="next-track">
+                    <img class="next" src="icons/next.png" alt="Next">
+                </div>
+                <div class="repeat-track">
+                    <img  class="repeat" src="icons/repeat.png" alt="Repeat">
+                </div>
+            </div>
+
+            <div class="slider-container">
+                <div class="current-time" id="current_time">00:00</div>
+                <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
+                <div class="total-duration">00:00</div>
+            </div>
+
+            <div class="slider-container">
+                <img class="volume-down" src="icons/volume-down.png" alt="Volume_down">
+                <input type="range" min="1" max="100" value="99" class="volume_slider" onchange="setVolume()">
+                <img class="volume-up" src="icons/volume-up.png" alt="Volume_up">
+            </div>
+        </div>
+    </div>
+</main>
+<footer></footer>
+</body>
+</html>
