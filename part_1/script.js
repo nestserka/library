@@ -39,10 +39,22 @@ const music_list = [
         music : 'music/heart.mp3'
     },
     {
-        img: 'img/atlas.png',
-        name : 'Best Part',
+        img: 'img/viking.PNG',
+        name : 'My Mother Told Me',
+        artist : 'Sea Shanty',
+        music : 'music/mother.mp3'
+    },
+    {
+        img: 'img/come_with.PNG',
+        name : 'Come with Me Now',
+        artist : 'Kongos',
+        music : 'music/come_with.mp3'
+    },
+    {
+        img: 'img/unstoppable.PNG',
+        name : 'Unstoppable',
         artist : 'The Score',
-        music : 'music/best_part.mp3'
+        music : 'music/unstoppable.mp3'
     }
 ];
 loadTrack(track_index);
