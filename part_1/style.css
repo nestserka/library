@@ -4,12 +4,12 @@
 
 @font-face {
     font-family: light-font;
-    src: url(../fonts/Rajdhani-Light.ttf);
+    src: url(./fonts/AmaticSC-Regular.ttf);
 }
 
 @font-face {
     font-family: medium-font;
-    src: url(../fonts/Rajdhani-Medium.ttf);
+    src: url(./fonts/AmaticSC-Bold.ttf);
     font-weight:300;
 }
 
@@ -28,7 +28,7 @@ html {
 .footer {
     display: flex;
     justify-content: center;
-    background: linear-gradient(90deg, rgba(187, 24, 70, 1) 0%, rgba(255, 255, 0, 1) 100%, rgba(0, 212, 255, 1) 100%);
+    background:#FF5F1F;
     padding: 20px;
 }
 
@@ -59,13 +59,17 @@ html {
 .blurred {
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(10px);
-    background: url('img/play_with_fire.png')  no-repeat;
+    background: url('img/play_with_fire.png');
     background-size: cover;
     background-position: center;
     z-index: -1;
     filter: blur(10px);
     position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom:0;
+    margin: auto;
 }
 
 .player {
@@ -118,19 +122,22 @@ html {
 
 .now-playing {
     font-size: 1rem;
+    color:#838283;
 }
 
 .track-name {
     font-size: 2.5rem;
+    letter-spacing: 0.03em;
     font-family: medium-font;
+    color: #FF6700;
 }
 
 .track-artist {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom:5px;
     width:110px;
     text-align: center;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.03em;
 }
 
 .buttons {
@@ -180,8 +187,9 @@ html {
     -webkit-appearance: none;
     appearance: none;
     height: 6px;
-    background: rgb(228, 7, 7);
+    background: white;
     outline: none;
+    border: 2px solid #838283;
     opacity:1;
     transition: opacity 0.2s;
     transform: rotate(-90deg);
@@ -198,13 +206,12 @@ html {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    width: 16px;
-    height: 16px;
-    border: 3px solid #d5163d;
-    background: white;
+    width: 17px;
+    height: 17px;
+    border: 3px solid #838283;
+    background: #FF6700;
     cursor: pointer;
     border-radius: 100%;
-    background: #ffff00;
 }
 
 
@@ -228,7 +235,10 @@ html {
 
 .current-time,
 .total-duration {
-    padding: 10px
+    padding: 10px;
+    color: #FF6700;
+    font-size: 1.3rem;
+    font-family: medium-font;
 }
 
 .volume-down {

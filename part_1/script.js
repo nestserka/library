@@ -38,20 +38,20 @@ document.addEventListener("DOMContentLoaded", function () {
             music: 'music/heart.mp3'
         },
         {
-            img: 'img/viking.PNG',
+            img: 'img/viking.png',
             name: 'My Mother Told Me',
             artist: 'Sea Shanty',
             music: 'music/mother.mp3'
         },
         {
-            img: 'img/come_with.PNG',
+            img: 'img/come_with.png',
             name: 'Come with Me Now',
             artist: 'Kongos',
             music: 'music/come_with.mp3'
         },
         {
-            img: 'img/unstoppable.PNG',
-            name: 'Unstoppable',
+            img: 'img/unstoppable.png',
+            name: ' I am Unstoppable',
             artist: 'The Score',
             music: 'music/unstoppable.mp3'
         }
@@ -209,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
         slider_bar.value = seekPosition;
         curr_time.textContent = formatTime(curr_track.currentTime);
         total_duration.textContent = formatTime(curr_track.duration);
-        const gradientValue = `linear-gradient(90deg, rgba(187, 24, 70, 1) 0%, rgba(255, 255, 0, 1) ${slider_bar.value}%, rgba(255, 255, 255, 1) ${slider_bar.value}%)`;
+        const gradientValue = `linear-gradient(90deg, rgba(255,103,0,1) 0%, rgba(255,255,255,1) ${slider_bar.value}%)`;
         slider_bar.style.background = gradientValue;
     }
 
