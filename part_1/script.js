@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     let now_playing = document.querySelector('.now-playing');
-    let track_art = document.querySelector('.track-art');
+    let background_for_track = document.querySelector('.track-bc');
     let track_name = document.querySelector('.track-name');
     let track_artist = document.querySelector('.track-artist');
 
@@ -57,9 +57,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ];
 
-    loadTrack(track_index);
+    startSong(track_index);
 
-    function loadTrack(track_index) {
+    function startSong(track_index) {
         clearInterval(updateTimer);
         reset();
 
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
         curr_track.src = music;
         curr_track.load();
 
-        track_art.style.backgroundImage = `url(${img})`;
+        background_for_track.style.backgroundImage = `url(${img})`;
         hideBackground(img);
         track_name.textContent = name;
         track_artist.textContent = artist;
@@ -103,13 +103,13 @@ document.addEventListener("DOMContentLoaded", function () {
     function playTrack() {
         curr_track.play();
         currentlyPlaying = true;
-        track_art.classList.add('rotate');
+        background_for_track.classList.add('rotationAnimation');
         document.querySelector('.pause').src = 'icons/start.png';
     }
     function pauseTrack() {
         curr_track.pause();
         currentlyPlaying = false;
-        track_art.classList.remove('rotate');
+        background_for_track.classList.remove('rotationAnimation');
         document.querySelector('.pause').src = 'icons/pause.png';
     }
 
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
     prev_btn.addEventListener('click', function () {
         slider_bar.style.background = "#FFF";
         track_index = (track_index > 0) ? (track_index - 1) : (songList.length - 1);
-        loadTrack(track_index);
+        startSong(track_index);
         playTrack();
     });
 
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             track_index = 0;
         }
-        loadTrack(track_index);
+        startSong(track_index);
         playTrack();
     });
 
@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     repeat_btn.addEventListener('click', function () {
         let current_index = track_index;
-        loadTrack(current_index);
+        startSong(current_index);
         playTrack();
     });
 
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
     volume_slider.addEventListener('click', function (event) {
         curr_track.volume = volume_slider.value / 100;
         if (curr_track.volume === 0) {
-            document.querySelector('.volume-up').src = 'icons/volume-down.png';
+            document.querySelector('.volume-up').src = 'icons/mute.png';
         } else {
             document.querySelector('.volume-up').src = 'icons/volume-up.png';
         }
@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             track_index = Math.floor(Math.random() * songList.length);
         }
-        loadTrack(track_index);
+        startSong(track_index);
         playTrack();
     }
 
