@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let repeat_btn = document.querySelector('.repeat-track');
 
 
-    let seek_slider = document.querySelector('.seek_slider');
+    let slider_bar = document.querySelector('.slider-bar');
     let volume_slider = document.querySelector('.volume_slider');
     let curr_time = document.querySelector('.current-time');
     let total_duration = document.querySelector('.total-duration');
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function reset() {
         curr_time.textContent = "00:00";
         total_duration.textContent = "00:00";
-        seek_slider.value = 0;
+        slider_bar.value = 0;
     }
 
     function hideBackground(value) {
@@ -114,12 +114,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     prev_btn.addEventListener('click', function () {
+        slider_bar.style.background = "#FFF";
         track_index = (track_index > 0) ? (track_index - 1) : (songList.length - 1);
         loadTrack(track_index);
         playTrack();
     });
 
     next_btn.addEventListener('click', function () {
+        slider_bar.style.background = "#FFF";
         if (!isShuffle && track_index < songList.length - 1) {
             track_index += 1;
         } else if (isShuffle) {
@@ -147,17 +149,18 @@ document.addEventListener("DOMContentLoaded", function () {
         playTrack();
     })
 
-    seek_slider.addEventListener('click', function () {
-        let moveTo = curr_track.duration * (seek_slider.value / 100);
+    slider_bar.addEventListener('click', function () {
+        let moveTo = curr_track.duration * (slider_bar.value / 100);
         curr_track.currentTime = moveTo;
+        setUpdate();
     })
 
     function nextTrack() {
+        slider_bar.style.background = "#FFF";
         if (!isShuffle) {
             track_index = (track_index + 1) % songList.length;
         } else {
             track_index = Math.floor(Math.random() * songList.length);
-            console.log("get" + track_index);
         }
         loadTrack(track_index);
         playTrack();
@@ -169,9 +172,11 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
         const seekPosition = (curr_track.currentTime / curr_track.duration) * 100;
-        seek_slider.value = seekPosition;
+        slider_bar.value = seekPosition;
         curr_time.textContent = formatTime(curr_track.currentTime);
         total_duration.textContent = formatTime(curr_track.duration);
+        const gradientValue = `linear-gradient(90deg, rgba(187, 24, 70, 1) 0%, rgba(255, 255, 0, 1) ${slider_bar.value}%, rgba(255, 255, 255, 1) ${slider_bar.value}%)`;
+        slider_bar.style.background = gradientValue;
     }
 
     function formatTime(time) {
