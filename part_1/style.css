@@ -2,9 +2,20 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: light-font;
+    src: url(../fonts/Rajdhani-Light.ttf);
+}
+
+@font-face {
+    font-family: medium-font;
+    src: url(../fonts/Rajdhani-Medium.ttf);
+    font-weight:300;
+}
+
 body,
 html {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: light-font;
     color: white;
     margin: 0;
     padding: 0;
@@ -49,8 +60,9 @@ html {
     width: 100%;
     height: 100%;
     backdrop-filter: blur(10px);
-    background: url('img/play_with_fire.png') 50% 50% no-repeat;
+    background: url('img/play_with_fire.png')  no-repeat;
     background-size: cover;
+    background-position: center;
     z-index: -1;
     filter: blur(10px);
     position: absolute;
@@ -80,6 +92,14 @@ html {
     justify-content: center;
 }
 
+.wrapper-details{
+    margin-top:10px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative; 
+}
+
 .track-art {
     margin: 25px;
     height: 250px;
@@ -102,18 +122,22 @@ html {
 
 .track-name {
     font-size: 2.5rem;
+    font-family: medium-font;
 }
 
 .track-artist {
-    margin-top: 10px;
     font-size: 1.2rem;
+    margin-bottom:5px;
+    width:110px;
+    text-align: center;
+    letter-spacing: 0.02em;
 }
 
 .buttons {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 20px 0 10px;
+    margin: 0;
 }
 
 .active {
@@ -142,18 +166,32 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+    position:relative;
 }
 
-/* .slider-bar,
-.volume_slider {
+.volume_slider{
+    opacity:0;
+    position:absolute;
+    margin-left:20px;
+}
+
+
+.volume_slider.active {
     -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
     height: 6px;
-    background: linear-gradient(90deg, rgba(187, 24, 70, 1) 0%, rgba(255, 255, 0, 1) 100%, rgba(0, 212, 255, 1) 100%);
-    -webkit-transition: .3s;
-    transition: opacity .3s;
-} */
+    background: rgb(228, 7, 7);
+    outline: none;
+    opacity:1;
+    transition: opacity 0.2s;
+    transform: rotate(-90deg);
+    position: absolute; 
+    top: -29px; 
+    left: 75px;
+    z-index: 30; 
+    width: 45%;
+  }
+  
 
 .slider-bar::-webkit-slider-thumb,
 .volume_slider::-webkit-slider-thumb {
@@ -186,10 +224,6 @@ html {
 .slider-bar:hover,
 .volume_slider:hover {
    cursor:pointer;
-}
-
-.volume_slider {
-    width: 30%;
 }
 
 .current-time,

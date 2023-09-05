@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let slider_bar = document.querySelector('.slider-bar');
     let volume_slider = document.querySelector('.volume_slider');
+    let volume_up = document.querySelector('.volume-up');
     let curr_time = document.querySelector('.current-time');
     let total_duration = document.querySelector('.total-duration');
     let curr_track = document.createElement('audio');
@@ -147,13 +148,46 @@ document.addEventListener("DOMContentLoaded", function () {
         let current_index = track_index;
         loadTrack(current_index);
         playTrack();
-    })
+    });
 
     slider_bar.addEventListener('click', function () {
         let moveTo = curr_track.duration * (slider_bar.value / 100);
         curr_track.currentTime = moveTo;
         setUpdate();
-    })
+    });
+
+    function openVolumeSlider() {
+        volume_slider.classList.add('active');
+    }
+      
+    function closeVolumeSlider() {
+        volume_slider.classList.remove('active');
+    }
+      
+    volume_up.addEventListener('click', function (event) {
+        event.stopPropagation(); 
+        volume_slider.classList.contains('active') ? closeVolumeSlider() : openVolumeSlider();
+      });
+
+    document.addEventListener('click', function () {
+        if (volume_slider.classList.contains('active')) {
+          closeVolumeSlider();
+        }
+    });
+
+    volume_slider.addEventListener('click', function (event) {
+        curr_track.volume = volume_slider.value / 100;
+        if (curr_track.volume === 0) {
+            document.querySelector('.volume-up').src = 'icons/volume-down.png';
+        } else {
+            document.querySelector('.volume-up').src = 'icons/volume-up.png';
+        }
+        event.stopPropagation(); 
+        setTimeout(function () {
+            closeVolumeSlider();
+          }, 2000); 
+    });
+
 
     function nextTrack() {
         slider_bar.style.background = "#FFF";
@@ -186,8 +220,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// TO DO volume
-
-// function setVolume(){
-//     curr_track.volume = volume_slider.value / 100;
-// }
