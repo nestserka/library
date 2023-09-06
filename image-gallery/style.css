@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: cinzel-medium;
+    src: url(./fonts/Cinzel-Medium.ttf);
+    font-weight:500;
+}
+
+@font-face {
+    font-family: cinzel-regular;
+    src: url(./fonts/Cinzel-Regular.ttf);
+    font-weight:400;
+}
+
+@font-face {
+    font-family: cinzel-semibold;
+    src: url(./fonts/Cinzel-SemiBold);
+    font-weight:600;
+}
+
+@font-face {
+    font-family: poiret-regular;
+    src: url(./fonts/PoiretOne-Regular);
+    font-weight:400;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    background-color: #fffafa;
+}
+
+.search-wrapper{
+    height:30vh;
+    background: url('img/cover.png');
+    background-size: cover;
+    background-position: center;
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+}
