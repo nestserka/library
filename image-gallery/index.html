@@ -8,20 +8,27 @@
     <title>Image Gallery</title>
 </head>
 <body>
-    <main>
+    <header> 
         <div class="search-wrapper">
             <div class="project-title"><h1>Authentic Image Gallery</h1></div>
             <div class="search-box">
                 <div class="box">
-                    <form method="get" action="">
-                        <input type="text" class="search-input" placeholder="Search for..." autofocus>
+                    <form autocomplete="off" id="loginForm">
+                        <input type="text" id="search-input" class="search-input" placeholder="Search for..." autofocus autocomplete="off">
                         <button type="submit" class="btn"><img class="search-img" src="icon/search-2.png" alt="search" /></button>
                   </form>
                 </div>
             </div>
+        </div>
+    </header>
+    <main>
+        <div class="gallery-wrapper">
+            <div id="gallery"></div> 
         </div>
     </main>
     <!-- <h1>Hello</h1>
     <div id="gallery"></div> -->
 </body>
 </html>
+
+
