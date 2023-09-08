@@ -2,6 +2,10 @@ let url = 'https://api.unsplash.com/search/photos?query=spring&per_page=30&orien
 let isSearch = false;
 
 
+if (isSearch === false) {
+    getData();
+}
+
 async function getData(){
     console.log(url);
 
@@ -29,18 +33,27 @@ document.addEventListener('DOMContentLoaded', function () {
     let search_input = document.getElementById('search-input');
     let loginForm = document.getElementById('loginForm');
 
-    loginForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-    
-        if (search_input.value === "") { 
+    function handleSearch() {
+        if (search_input.value === "") {
             return;
         } else {
             url = `https://api.unsplash.com/search/photos?query=${search_input.value}&per_page=30&orientation=landscape&client_id=SouHY7Uul-OxoMl3LL3c0NkxUtjIrKwf3tsGk1JaiVo`;
-            getData()
+            getData();
+        }
+    }
+
+    search_input.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault(); 
+            handleSearch();
         }
     });
-});
 
+    loginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        handleSearch();
+    });
+});
 
 
 
