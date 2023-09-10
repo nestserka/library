@@ -752,6 +752,7 @@ checkCard.addEventListener('click', function () {
   
     userInitials.textContent = userName + " " + surname;
     bookNumber.textContent = number;
+    updateUserIconInfo(matchingUser);
   
     setTimeout(() => {
       libraryCard.style.display = 'flex';
