@@ -613,6 +613,7 @@ copyIcon.addEventListener('click', async function () {
 document.addEventListener('DOMContentLoaded', function () {
 buyButtons.forEach(button => {
   button.addEventListener('click', function () {
+    console.log("click");
     let bookId = this.getAttribute("data-book-id");
     let card = this.closest('.card'); 
     let authorElement = card.querySelector('.author');
@@ -757,6 +758,7 @@ checkCard.addEventListener('click', function () {
     setTimeout(() => {
       libraryCard.style.display = 'flex';
       libraryAfterCheck.style.display = 'none';
+      restoreUserIconInfo(matchingUser);
       
   
       userInitials.textContent = '';
@@ -852,4 +854,17 @@ function updateUserIconInfo(value){
   myBooks.forEach(book => {
     book.textContent = value.booksOwn;
   });
+}
+
+function restoreUserIconInfo(value){
+const visits = document.querySelectorAll(".visits_count");
+visits.forEach(visit => {
+  visit.textContent = '';
+});
+
+
+const myBooks = document.querySelectorAll('.books_count');
+myBooks.forEach(book => {
+  book.textContent = '';
+});
 }
