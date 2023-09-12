@@ -25,7 +25,7 @@
   }
 
   .level-mng{
-    margin-top:200px;
+    margin-top:100px;
     border: 2px solid black;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
   }
@@ -150,9 +150,58 @@
 
 
 .game{
-    padding: 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
     grid-gap: 20px;
+    place-items: center;
+    padding:20px 0;
 }
+
+.card{
+border-radius: 25px;
+background: #e0e0e0;
+box-shadow:  -20px 20px 60px #bebebe,
+             20px -20px 60px #ffffff;
+width:100px;
+height: 100px;
+position: relative;
+cursor: pointer;
+transform: scale(1);
+transition: transform .5s;
+}
+
+.card:active {
+    transform: scale(0.95);
+    transition: transform .3s;
+}
+
+.card.flipped{
+    transform: rotateY(180deg);
+  }
+
+.card-back,
+.card-front{
+  position:absolute;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display:flex;
+  justify-content: center;
+  backface-visibility: hidden;
+  transition: transform .6s cubic-bezier(0.4, 0.0, 0.2, 1)
+}
+
+ .card.flipped .card-front {
+  transform: rotateY(180deg) rotateZ(50deg);
+} 
+
+.card.flipped .card-back {
+  transform: rotateY(0) rotateZ(0);
+} 
+
+.card-back{
+  user-select: none;
+  transform: rotateY(180deg) rotateZ(50deg)
+}
+
+

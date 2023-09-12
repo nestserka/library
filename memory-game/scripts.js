@@ -91,14 +91,14 @@ function selectRandomCards(value) {
         const randomIndex = Math.floor(Math.random() * clonedArray.length);
         return clonedArray.splice(randomIndex, 1)[0];
     });
-    displayCards([...randomPicks, ...randomPicks], value);
+    displayCards([...randomPicks, ...randomPicks]);
 } else {
-    displayCards([...runes, ...runes], value);
+    displayCards([...runes, ...runes]);
 }
 }
 
 // Fisher–Yates Shuffle https://bost.ocks.org/mike/shuffle/
-const displayCards = (runeArr, value) => {
+const displayCards = (runeArr) => {
     var m = runeArr.length, t, i;
     while (m) {
         i = Math.floor(Math.random() * m--);
@@ -106,22 +106,34 @@ const displayCards = (runeArr, value) => {
         runeArr[m] = runeArr[i];
         runeArr[i] = t;
     }
-    console.log(runeArr);
-    buildBoard(runeArr, value);
+    buildBoard(runeArr);
 }
 
-function buildBoard(runeArr, value) {
-    game.style.gridTemplateColumns = `repeat(${value}, 1ft)`;
-    game.style.gridTemplateRows = `repeat(${value}, 1ft)`;
+function buildBoard(runeArr) {
     runeArr.forEach(function(el) {
         const div = document.createElement('div');
         div.classList.add('card');
+        const div2 = document.createElement('div');
+        div2.classList.add('card-back');
+        const div1 = document.createElement('div');
+        div1.classList.add('card-front');
         const img = document.createElement('img');
         img.classList.add('card-img');
         img.src = el.img;
         img.alt = `image`;
-        div.appendChild(img);
+        div2.appendChild(img);
+        div.appendChild(div1);
+        div.appendChild(div2);
         game.appendChild(div);
     })
+    startGame();
 }
 
+
+function startGame(){
+    let cards = document.querySelectorAll('.card');
+    cards.forEach(card => card.addEventListener('click', function (e) {
+        console.log("click"); 
+        this.classList.toggle('flipped');
+    })); 
+}
