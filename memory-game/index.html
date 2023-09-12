@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-32x32.png">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap">
+        <!-- before game -->
+        <div class="welcome-wrapper">
+            <h1>Viking Memory Game</h1>
+           <div class="level-mng"> 
+            <p class="level">Please choose your level:</p>
+            <button class="easy">Easy</button>
+            <button class="medium">Medium</button>
+            <button class="hard">Hard</button>
+        </div>
+        </div>
+        <div class="game" data-dimension="4"></div>
+
+
+        <!-- after game -->
+        <div class="modal-overlay">
+            <div class="modal">
+                <h2 class="winner">Game finished</h2>
+                <button class="restart">Play again</button>
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>

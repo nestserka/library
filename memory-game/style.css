@@ -1,0 +1,158 @@
+* {
+    box-sizing: border-box;
+  }
+
+
+  body,
+  html {
+      margin: 0;
+      padding: 0;
+      height:100vh;
+      background-color: #e0e0e0;
+  }
+
+  .wrap{
+    margin: 0 auto;
+    max-width:800px;
+    padding:20px;
+  }
+
+  .welcome-wrapper{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .level-mng{
+    margin-top:200px;
+    border: 2px solid black;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  }
+
+  .modal-overlay {
+    background: rgba(0, 0, 0, 0.3);
+    position: relative;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+  }
+
+  .modal {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    margin: 0 auto;
+    background: #e0e0e0;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    display: none;
+  }
+
+  .modal .winner {
+    font-size: 50px;
+    text-align: center;
+    color: #4d4d4d;
+    margin:40px 0;
+    padding:0;
+  }
+  
+  .restart {
+    width:130px;
+    height: 40px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border: 1px solid #000;
+    color: #000;
+    background: transparent;
+    z-index: 0;
+  }
+  .restart:hover:after {
+    top: 0;
+    left: 0;
+  }
+  .restart:after {
+    content: "";
+    width: 100%;
+    z-index: -1;
+    position: absolute;
+    height: 100%;
+    top: 5px;
+    left: 5px;
+    transition: 0.2s;
+    background-color: #ced4da;
+  }
+
+  .level{
+    text-align: center;
+    font-size:20px;
+  }
+
+  .easy, .medium, .hard {
+    min-width: 110px;
+    height: 40px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    z-index: 0;
+    background: #fff;
+    overflow: hidden;
+    border: 2px solid #495057;
+    color: #495057;
+    margin-bottom:20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .easy:hover,
+  .medium:hover,
+  .hard:hover {
+    color: #fff;
+  }
+  .easy:hover:after,
+  .medium:hover:after,
+  .hard:hover:after {
+    width: 100%;
+  }
+  .easy:after,
+  .medium:after,
+  .hard:after  {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    transition: all 0.3s ease;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: #495057;
+  }
+
+
+
+.game{
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 20px;
+}
