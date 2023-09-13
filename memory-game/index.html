@@ -12,6 +12,9 @@
         <!-- before game -->
         <div class="welcome-wrapper">
             <h1>Viking Memory Game</h1>
+            <div class="menu">
+            <p><span id="seconds">00</span>:<span id="tens">00</span></p>
+        </div>
            <div class="level-mng"> 
             <p class="level">Please choose your level:</p>
             <button class="easy">Easy</button>
@@ -23,12 +26,12 @@
 
 
         <!-- after game -->
-        <div class="modal-overlay">
             <div class="modal">
                 <h2 class="winner">Game finished</h2>
+                <p class="totalMoves"></p>
+                <p class="totalTime"></p>
                 <button class="restart">Play again</button>
             </div>
-        </div>
     </div>
     <script src="scripts.js"></script>
 </body>

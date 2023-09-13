@@ -24,20 +24,16 @@
     align-items: center;
   }
 
+  .menu {
+    display:flex;
+    flex-direction: row;
+    display:none;
+  }
+
   .level-mng{
     margin-top:100px;
     border: 2px solid black;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-  }
-
-  .modal-overlay {
-    background: rgba(0, 0, 0, 0.3);
-    position: relative;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
   }
 
   .modal {
@@ -45,23 +41,24 @@
     width: 400px;
     height: 300px;
     margin: 0 auto;
-    background: #e0e0e0;
-    top: 50%;
-    transform: translateY(-50%);
+    background: rgba(255,255,255,0.15);
+    bottom:50%;
     padding: 20px;
-    border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     display:flex;
     flex-direction: column;
     align-items: center;
     display: none;
+    box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
+    backdrop-filter: blur(11.2px);
+    -webkit-backdrop-filter: blur(11.2px);
+    border-radius: 10px;
   }
 
   .modal .winner {
     font-size: 50px;
     text-align: center;
     color: #4d4d4d;
-    margin:40px 0;
+    margin:20px 0 10px;
     padding:0;
   }
   

@@ -2,8 +2,25 @@ const btnEasy = document.querySelector('.easy');
 const btnMid = document.querySelector('.medium');
 const btnHard = document.querySelector('.hard');
 const lvlMng = document.querySelector('.level-mng');
+const modalOverLay = document.querySelector('.modal-overlay');
+let totalMoves = document.querySelector('.totalMoves');
+let totalTime = document.querySelector('.totalTime');
+const modal = document.querySelector('.modal');
 let game = document.querySelector('.game');
+const btnRestart = document.querySelector('.restart');
+const menu = document.querySelector('.menu');
+let scoreMatch = 0;
+let runeCount = 0;
+let countClick = 0;
 
+
+// timer 
+
+let seconds = 0; 
+var tens = 0; 
+var appendTens = document.getElementById("tens")
+var appendSeconds = document.getElementById("seconds")
+var Interval ;
 
 const runes = [
 
@@ -72,29 +89,33 @@ const runes = [
 btnEasy.addEventListener('click', function () {
     lvlMng.style.display = 'none';
     selectRandomCards(6);
+    scoreMatch = 6;
+    startClock();
 });
 
 btnMid.addEventListener('click', function () {
     lvlMng.style.display = 'none';
     selectRandomCards(8);
+    scoreMatch = 8;
 });
 
 btnHard.addEventListener('click', function () {
     lvlMng.style.display = 'none';
     selectRandomCards(10);
+    scoreMatch = 10;
 });
 
 function selectRandomCards(value) {
-    if (value < 9) { 
-    const clonedArray = [...runes];
-    const randomPicks = Array.from({ length: value }, () => {
-        const randomIndex = Math.floor(Math.random() * clonedArray.length);
-        return clonedArray.splice(randomIndex, 1)[0];
-    });
-    displayCards([...randomPicks, ...randomPicks]);
-} else {
-    displayCards([...runes, ...runes]);
-}
+    if (value < 9) {
+        const clonedArray = [...runes];
+        const randomPicks = Array.from({ length: value }, () => {
+            const randomIndex = Math.floor(Math.random() * clonedArray.length);
+            return clonedArray.splice(randomIndex, 1)[0];
+        });
+        displayCards([...randomPicks, ...randomPicks]);
+    } else {
+        displayCards([...runes, ...runes]);
+    }
 }
 
 // Fisher–Yates Shuffle https://bost.ocks.org/mike/shuffle/
@@ -110,9 +131,11 @@ const displayCards = (runeArr) => {
 }
 
 function buildBoard(runeArr) {
-    runeArr.forEach(function(el) {
-        const div = document.createElement('div');
+    runeArr.forEach(function (el) {
+        let div = document.createElement('div');
         div.classList.add('card');
+        let id = el.id;
+        div.setAttribute('data-id', id);
         const div2 = document.createElement('div');
         div2.classList.add('card-back');
         const div1 = document.createElement('div');
@@ -129,11 +152,110 @@ function buildBoard(runeArr) {
     startGame();
 }
 
-
-function startGame(){
+let hasFlippedCard = false;
+let firstCard, secondCard;
+function startGame() {
+    menu.style.display = 'block';
     let cards = document.querySelectorAll('.card');
     cards.forEach(card => card.addEventListener('click', function (e) {
-        console.log("click"); 
-        this.classList.toggle('flipped');
-    })); 
+        countClick++;
+        console.log("click");
+        this.classList.add('flipped');
+
+        if (!hasFlippedCard) {
+            hasFlippedCard = true;
+            firstCard = this;
+            return;
+        }
+
+        secondCard = this;
+        hasFlippedCard = false;
+        checkForMatch();
+    }));
+}
+
+function checkForMatch() {
+    if (firstCard.dataset.id === secondCard.dataset.id) {
+        runeCount++;
+        setTimeout(() => {
+            updateMatch([firstCard, secondCard]);
+            firstCard = null;
+            secondCard = null;
+        }, 500)
+    } else if (firstCard.dataset.id !== secondCard.dataset.id) {
+        setTimeout(() => {
+            rotateElements([firstCard, secondCard]);
+            firstCard = null;
+            secondCard = null;
+        }, 500)
+    }
+    isWinner(runeCount);
+}
+
+const rotateElements = (elements) => {
+    if (typeof elements !== 'object' || !elements.length) return;
+    elements.forEach(element => {
+        element.classList.remove('flipped');
+    });
+}
+
+const updateMatch = (elements) => {
+    if (typeof elements !== 'object' || !elements.length) return;
+    elements.forEach(element => {
+        element.style.background = '#949494';
+        element.style.boxShadow = '10px -10px 20px #7e7e7e,-10px 10px 20px #aaaaaa';
+    });
+}
+
+function isWinner(runeCount) {
+    if (runeCount === scoreMatch) {
+        game.style.display = 'none';
+        menu.style.display = 'none';
+        modal.style.display = 'flex';
+        totalMoves.innerHTML = `Total Moves: ${countClick} `
+        clearInterval(Interval);
+        const secondsValue = appendSeconds.textContent; 
+        const tensValue = appendTens.textContent; 
+        totalTime.innerHTML = `Time: ${secondsValue} seconds and ${tensValue} ms `;
+    }
+}
+
+btnRestart.addEventListener('click', function () {
+    game.innerHTML = '';
+    scoreMatch = 0;
+    runeCount = 0;
+    lcountClick = 0;
+    hasFlippedCard = false;
+    [firstCard, secondCard] = [null, null];
+    lvlMng.style.display = 'block';
+    modal.style.display = 'none';
+    restartTime();
+});
+
+
+function startClock() {
+    clearInterval(Interval);
+    Interval = setInterval(updateTimer, 10);
+}
+
+function updateTimer() {
+    tens++;
+    if (tens > 99) {
+        seconds++;
+        tens = 0;
+    }
+    
+    const formattedTens = tens < 10 ? "0" + tens : tens;
+    const formattedSeconds = seconds < 10 ? "0" + seconds : seconds;
+    
+    appendTens.innerHTML = formattedTens;
+    appendSeconds.innerHTML = formattedSeconds;
+}
+
+function restartTime(){
+    clearInterval(Interval);
+    tens = 0;
+  	seconds = 0;
+    appendTens.innerHTML = tens;
+  	appendSeconds.innerHTML = seconds;
 }
