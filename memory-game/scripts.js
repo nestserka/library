@@ -8,6 +8,7 @@ let totalTime = document.querySelector('.totalTime');
 const modal = document.querySelector('.modal');
 let game = document.querySelector('.game');
 const btnRestart = document.querySelector('.restart');
+const btnRestartGame = document.querySelector('.restart-game');
 const menu = document.querySelector('.menu');
 let scoreMatch = 0;
 let runeCount = 0;
@@ -17,10 +18,10 @@ let countClick = 0;
 // timer 
 
 let seconds = 0; 
-var tens = 0; 
-var appendTens = document.getElementById("tens")
-var appendSeconds = document.getElementById("seconds")
-var Interval ;
+let tens = 0; 
+let appendTens = document.getElementById("tens")
+let appendSeconds = document.getElementById("seconds")
+let Interval ;
 
 const runes = [
 
@@ -86,23 +87,23 @@ const runes = [
 ]
 
 
-btnEasy.addEventListener('click', function () {
+function setGameDifficulty(cardsCount, matchCount) {
     lvlMng.style.display = 'none';
-    selectRandomCards(6);
-    scoreMatch = 6;
+    selectRandomCards(cardsCount);
+    scoreMatch = matchCount;
     startClock();
+}
+
+btnEasy.addEventListener('click', function () {
+    setGameDifficulty(6, 6);
 });
 
 btnMid.addEventListener('click', function () {
-    lvlMng.style.display = 'none';
-    selectRandomCards(8);
-    scoreMatch = 8;
+    setGameDifficulty(8, 8);
 });
 
 btnHard.addEventListener('click', function () {
-    lvlMng.style.display = 'none';
-    selectRandomCards(10);
-    scoreMatch = 10;
+    setGameDifficulty(10, 10);
 });
 
 function selectRandomCards(value) {
@@ -152,15 +153,17 @@ function buildBoard(runeArr) {
     startGame();
 }
 
+let isProcessing = false;
 let hasFlippedCard = false;
 let firstCard, secondCard;
 function startGame() {
-    menu.style.display = 'block';
+    menu.style.display = 'flex';
     let cards = document.querySelectorAll('.card');
     cards.forEach(card => card.addEventListener('click', function (e) {
+        if (isProcessing) return;
         countClick++;
-        console.log("click");
         this.classList.add('flipped');
+        console.log(hasFlippedCard);
 
         if (!hasFlippedCard) {
             hasFlippedCard = true;
@@ -170,6 +173,7 @@ function startGame() {
 
         secondCard = this;
         hasFlippedCard = false;
+        isProcessing = true; 
         checkForMatch();
     }));
 }
@@ -181,12 +185,14 @@ function checkForMatch() {
             updateMatch([firstCard, secondCard]);
             firstCard = null;
             secondCard = null;
+            isProcessing = false;
         }, 500)
     } else if (firstCard.dataset.id !== secondCard.dataset.id) {
         setTimeout(() => {
             rotateElements([firstCard, secondCard]);
             firstCard = null;
             secondCard = null;
+            isProcessing = false;
         }, 500)
     }
     isWinner(runeCount);
@@ -259,3 +265,9 @@ function restartTime(){
     appendTens.innerHTML = tens;
   	appendSeconds.innerHTML = seconds;
 }
+
+btnRestartGame.addEventListener('click', function () {
+    game.innerHTML = '';
+    restartTime();
+    setGameDifficulty(scoreMatch, scoreMatch);
+});
