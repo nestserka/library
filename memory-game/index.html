@@ -3,37 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Document</title>
 </head>
 <body>
-    <div class="wrap">
-        <!-- before game -->
-        <div class="welcome-wrapper">
-            <h1>North Memory Game</h1>
-            <div class="menu">
-            <p>Timer: &nbsp; <span id="seconds">00</span>:<span id="tens">00</span></p>
-            <button class="restart-game">Restart Game</button>
-        </div>
-           <div class="level-mng"> 
-            <p class="level">Please choose your level:</p>
-            <button class="easy">Easy</button>
-            <button class="medium">Medium</button>
-            <button class="hard">Hard</button>
-        </div>
-        </div>
-        <div class="game" id="cardContainer"></div>
-
-
-        <!-- after game -->
-            <div class="modal">
-                <h2 class="winner">Game over</h2>
-                <p class="totalMoves"></p>
-                <p class="totalTime"></p>
-                <button class="restart">Play again</button>
-            </div>
-    </div>
+    <h1>Lucky's whack a cancer game</h1>
+    <!-- <section class="introduction">
+        <h2 class="game-introduction">What is this game about?</h2>
+        <p>Have you heard about <q>Whac-A-Mole</q> game? The rules are simple: your goal is to whack a mole fast when his hat lights up, and/or he makes his special sound.</p>
+        <img src="img/game_explanation.png" alt="game-explanation">
+        <p>This summer my dog (his name is Lucky, but seems he is not that lucky) got cancer. So instead of hitting the mole, I decided to change the game a bit.</p>
+        <p>In the given time your goal is to hit as many cancer-cells as you can and save Lucky. Each hit will bring you 2 points.</p>
+        <p>Sounds easy? I agree. But you must be careful. Sometimes Lucky pops up to checks what you are doing. If you hit him by mistake — you will lose 5 points</p>
+        <h4>Press a Button to Begin</h4>
+        <button class="start-game">Start</button>
+    </section> -->
+    <section class="game">
+        <div class="board" id="board"></div>
+    </section>
     <script src="scripts.js"></script>
 </body>
 </html>
