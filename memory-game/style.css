@@ -16,7 +16,7 @@ html {
   margin: 0;
   padding: 0;
   height: 100vh;
-  background-color:#FFFF00;
+  background-color:#59aa3a;
   color: black;
 }
 
@@ -24,13 +24,15 @@ html {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   place-items: center;
-  background-color: #59aa3a;
   margin: 0 auto;
   width: 90vh;
   height:80vh;
-  border: 16px solid #a45c3c;
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  border-radius: 0px;
+  background: #59aa3a;
+  box-shadow:  -20px -20px 60px #3f7929,
+               20px 20px 60px #73db4b;
 }
+
 
 .item {
   width: 12.5rem;
