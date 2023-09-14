@@ -1,11 +1,13 @@
 let time = document.getElementById('timer');
 const board = document.getElementById("board");
 let initialTime = 60;
-let popUpTime = 2000;
-let closeTime = 3000;
-let interval, speed, showTimer, enemyPopUp;
+let popUpTime = 1500;
+let closeTime = 2500;
+let interval, speed, showTimer, enemyPopUp, luckyInterval, halfGame;
 let userScore = 0;
 let records = [];
+let luckyTime = 3500;
+console.log(userScore);
 
 
 
@@ -23,17 +25,28 @@ function createContainers() {
         const imgEnemy = document.createElement("img");
         imgEnemy.src = "img/cancer.png";
         imgEnemy.classList = "img-tapped";
+        const divLucky = document.createElement("div");
+        divLucky.className = "lucky";
+        const imgLucky = document.createElement("img");
+        imgLucky.src = "img/lucky.png";
+        imgLucky.classList = "lucky-tapped";
         divEnemy.appendChild(imgEnemy);
+        divLucky.appendChild(imgLucky);
         divItem.appendChild(divHedge);
         divItem.appendChild(divEnemy);
+        divItem.appendChild(divLucky);
         board.appendChild(divItem);
     }
 }
 
 function popUp(){
-    let enimies = document.querySelectorAll('.item');
-    let enemy = enimies[selectRandom([...enimies])].querySelector('.enemy');
+    let items = document.querySelectorAll('.item');
+    let index = items[selectRandom([...items])];
+    let enemy = index.querySelector('.enemy');
+    let lucky = index.querySelector('.lucky');
+    if (!lucky.classList.contains('lucky-appear')) {
     enemy.classList.add('mole-appear');
+    }
     hide(enemy);
 }
 
@@ -42,6 +55,7 @@ function updateTimer() {
     if (remainingTime > 0) {
         remainingTime -= 1;
         time.textContent = remainingTime;
+        console.log(userScore);
     } else {
         clearInterval(interval);
         time.textContent = "Time's up!";
@@ -66,8 +80,8 @@ function startGame(){
     interval = setInterval(updateTimer, 1000);
     showTimer = setInterval(popUp,  popUpTime);
     speed = setInterval(updateSpeed, 15000);
-    enemyPopUp = setInterval(updatePop, 10000)
-    
+    enemyPopUp = setInterval(updatePop, 10000);
+    halfGame = setInterval(addLucky, 30000);
 }
 
 function updateSpeed(){
@@ -78,18 +92,49 @@ function updatePop(){
     popUpTime = popUpTime- 350;
 }
 
+function addLucky(){
+    luckyInterval = setInterval(popUpLucky, 4500);
+}
+
 board.addEventListener('click', function (event) {
     const clickedElement = event.target;
 
     if (clickedElement.classList.contains('img-tapped')) {
-        userScore++;
+        userScore = userScore + 2;
         const itemElement = clickedElement.closest('.enemy');
 
         if (itemElement) {
             itemElement.classList.remove('mole-appear');
         }
     }
+
+    if (clickedElement.classList.contains('lucky-tapped')) {
+        userScore = userScore - 5;
+        const itemElement = clickedElement.closest('.lucky');
+
+        if (itemElement) {
+            itemElement.classList.remove('lucky-appear');
+        }
+    }
 });
+
+
+function popUpLucky(){
+    let items = document.querySelectorAll('.item');
+    let index = items[selectRandom([...items])];
+    let enemy = index.querySelector('.enemy');
+    let lucky = index.querySelector('.lucky');
+    if (!enemy.classList.contains('mole-appear')) {
+    lucky.classList.add('lucky-appear');
+    }
+    hideLucky(lucky);
+}
+
+function hideLucky(value){
+    setTimeout(() => {
+        value.classList.remove('lucky-appear');
+    }, closeTime);
+}
 
 startGame();
 
