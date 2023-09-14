@@ -55,5 +55,11 @@ img {
 .hedge {
   width: 8.125rem;
   position: absolute;
-  z-index: 10;
+  z-index: 3;
 }
+
+.mole-appear{
+  width: 9rem;
+  bottom: 45%;
+}
+
