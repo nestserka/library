@@ -11,10 +11,26 @@ let statistics = document.querySelector('.statistics');
 const result_board = document.querySelector('.result-board');
 const modal =  document.querySelector('.modal');
 const minimum_score = 30;
-const btnScore = document.getElementById("score");
-const btnPlay = document.getElementById("play-again");
+const btnScore = document.getElementById('score');
+const btnPlay = document.getElementById('play-again');
+const container = document.getElementById('score-board');
+const closeBtn = document.querySelector('.close-window')
+const timeContainer = document.querySelector('.time-design');
+const btnStart = document.querySelector('start');
 
 
+
+function initializeGame(){
+    let scores = JSON.parse(localStorage.getItem('scores'));
+    if (!scores) {
+        scores = Array(10).fill(0);
+        localStorage.setItem('scores', JSON.stringify(scores));
+    }
+    time.textContent = '60';
+    createContainers();
+    result_board.style.display = 'none';
+    startGame();
+}
 
 
 function createContainers() {
@@ -71,6 +87,7 @@ function updateTimer() {
     } else {
         clearInterval(interval);
         board.style.display = 'none';
+        timeContainer.style.display = 'none';
         showResults();
     } 
 }
@@ -94,9 +111,6 @@ function addLucky(){
 
 
 function startGame(){
-    time.textContent = '60';
-    createContainers();
-    result_board.style.display = 'none';
     interval = setInterval(updateTimer, 1000);
     showTimer = setInterval(popUp,  popUpTime);
     speed = setInterval(updateSpeed, 15000);
@@ -152,8 +166,6 @@ function hideLucky(value){
     }, closeTime);
 }
 
-startGame();
-
 function showResults(){
     modal.style.display = 'block';
     clearIntervals();
@@ -182,15 +194,32 @@ function showResults(){
             statistics.textContent = `YOU LOSE!`;
         }
     }
+    getTotalScores();
 }
    
  
 
 btnPlay.addEventListener('click', function(){
       resetTimer();
-      startGame();
+      initializeGame();
       modal.style.display = 'none'
       board.style.display = 'grid';
+      timeContainer.style.display = 'block'
+});
+
+btnScore.addEventListener('click', function(){
+    container.style.display = 'grid';
+})
+
+closeBtn.addEventListener('click', function(){
+    container.style.display = 'none';
+})
+
+document.addEventListener('click', function(event) {
+    console.log("click");
+    if (event.target !== container && container.style.display === 'grid' && event.target !== btnScore) {
+        container.style.display = 'none';
+    }
 });
 
 function resetTimer() {
@@ -210,3 +239,33 @@ function clearIntervals(){
     clearInterval(enemyPopUp);
     clearInterval(luckyInterval);
 }
+
+function getTotalScores() {
+    let scores = JSON.parse(localStorage.getItem('scores'));
+    let div = document.createElement("div");
+        div.className = 'score-item';
+        let p = document.createElement("p");
+        p.className = 'number';
+        let p2 = document.createElement("p");
+        p2.className = 'score-value';
+        div.appendChild(p);
+        div.appendChild(p2);
+        p.textContent = "Number";
+        p2.textContent = "Score";
+        container.appendChild(div); 
+
+    scores.forEach(function (el, i) {
+        const div = document.createElement("div");
+        div.className = 'score-item';
+        const p = document.createElement("p");
+        p.className = 'number';
+        const p2 = document.createElement("p");
+        p2.className = 'score-value';
+        p.textContent = el; 
+        p2.textContent = i+1;
+        div.appendChild(p2);
+        div.appendChild(p);
+        container.appendChild(div); 
+    });
+}
+
