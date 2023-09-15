@@ -1,11 +1,10 @@
 let time = document.getElementById('timer');
 const board = document.getElementById("board");
 let initialTime = 60;
-let popUpTime = 1500;
+let popUpTime = 1100;
 let closeTime = 2500;
 let interval, speed, showTimer, enemyPopUp, luckyInterval;
 let userScore = 0;
-let luckyTime = 3500;
 let score = document.querySelector('.user-score');
 let statistics = document.querySelector('.statistics');
 const result_board = document.querySelector('.result-board');
@@ -16,11 +15,29 @@ const btnPlay = document.getElementById('play-again');
 const container = document.getElementById('score-board');
 const closeBtn = document.querySelector('.close-window')
 const timeContainer = document.querySelector('.time-design');
-const btnStart = document.querySelector('start');
+const btnStart = document.getElementById('start');
+const introduction = document.querySelector('.introduction');
+const game = document.querySelector('.game');
+const btnRules = document.getElementById('rules')
+const scores_container = document.getElementById('scores');
 
 
+btnStart.addEventListener('click', function(){
+    introduction.style.display = 'none';
+    game.style.display = 'block';
+    container.innerHTML = '';
+    initializeGame();
+})
+
+btnRules.addEventListener('click', function(){
+    resetTimer();
+    modal.style.display = 'none';
+    introduction.style.display = 'flex';
+});
 
 function initializeGame(){
+    board.style.display = 'grid';
+    timeContainer.style.display = 'block'
     let scores = JSON.parse(localStorage.getItem('scores'));
     if (!scores) {
         scores = Array(10).fill(0);
@@ -78,7 +95,7 @@ function updateTimer() {
         remainingTime -= 1;
         time.textContent = remainingTime;
         console.log(userScore);
-        if (remainingTime == 30) {
+        if (remainingTime == 40) {
             addLucky();
         }
         if (remainingTime < 10) {
@@ -88,6 +105,8 @@ function updateTimer() {
         clearInterval(interval);
         board.style.display = 'none';
         timeContainer.style.display = 'none';
+        const audio = new Audio('./music/final.mp3');
+        audio.play(); 
         showResults();
     } 
 }
@@ -105,8 +124,7 @@ function hide(value){
 }
 
 function addLucky(){
-    luckyInterval = setInterval(popUpLucky, 4500);
-    console.log("lucky" + luckyTime);
+    luckyInterval = setInterval(popUpLucky, 2000);
 }
 
 
@@ -128,23 +146,42 @@ function updatePop(){
 
 board.addEventListener('click', function (event) {
     const clickedElement = event.target;
+    const audio = new Audio('./music/musia.mp3');
+    audio.play(); 
 
     if (clickedElement.classList.contains('img-tapped')) {
         userScore = userScore + 2;
+        const bush = clickedElement.parentElement.previousElementSibling;
+        let text = document.createElement('span');
+        text.setAttribute('class', 'bang');
+        text.innerHTML = "BANG!";
+        bush.appendChild(text);
+
         const itemElement = clickedElement.closest('.enemy');
 
         if (itemElement) {
             itemElement.classList.remove('mole-appear');
         }
+        setTimeout(() => {
+            text.remove();
+        }, 150);
     }
 
     if (clickedElement.classList.contains('lucky-tapped')) {
         userScore = userScore - 5;
         const itemElement = clickedElement.closest('.lucky');
+        const bush = clickedElement.parentElement.previousElementSibling.previousElementSibling;
+        let text = document.createElement('span');
+        text.setAttribute('class', 'minus-score');
+        text.innerHTML = "OH, NO!";
+        bush.appendChild(text);
 
         if (itemElement) {
             itemElement.classList.remove('lucky-appear');
         }
+        setTimeout(() => {
+            text.remove();
+        }, 200);
     }
 });
 
@@ -182,7 +219,7 @@ function showResults(){
         const bestScore = scores[0]; 
         bestScoreElement.textContent = `Current Best Score: ${bestScore}`;
 
-        if(bestScore < userScore && userScore > minimum_score) {
+        if(bestScore <= userScore && userScore > minimum_score) {
             statistics.textContent = `You win!`;
         } else {
             statistics.textContent = `YOU LOSE!`;
@@ -203,30 +240,30 @@ btnPlay.addEventListener('click', function(){
       resetTimer();
       initializeGame();
       modal.style.display = 'none'
-      board.style.display = 'grid';
-      timeContainer.style.display = 'block'
 });
 
 btnScore.addEventListener('click', function(){
     container.style.display = 'grid';
+    scores_container.style.display = 'grid';
 })
 
 closeBtn.addEventListener('click', function(){
     container.style.display = 'none';
+    scores_container.style.display = 'none';
 })
 
 document.addEventListener('click', function(event) {
     console.log("click");
     if (event.target !== container && container.style.display === 'grid' && event.target !== btnScore) {
         container.style.display = 'none';
+        scores_container.style.display = 'none';
     }
 });
 
 function resetTimer() {
-    popUpTime = 1500;
+    popUpTime = 1100;
     closeTime = 2500;
     userScore = 0;
-    luckyTime = 3500;
     statistics.textContent = '';
     board.innerHTML = '';
     time.style.color = '#FFFF00';
@@ -268,4 +305,3 @@ function getTotalScores() {
         container.appendChild(div); 
     });
 }
-
