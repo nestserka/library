@@ -3,11 +3,17 @@ const board = document.getElementById("board");
 let initialTime = 60;
 let popUpTime = 1500;
 let closeTime = 2500;
-let interval, speed, showTimer, enemyPopUp, luckyInterval, halfGame;
+let interval, speed, showTimer, enemyPopUp, luckyInterval;
 let userScore = 0;
-let records = [];
 let luckyTime = 3500;
-console.log(userScore);
+let score = document.querySelector('.user-score');
+let statistics = document.querySelector('.statistics');
+const result_board = document.querySelector('.result-board');
+const modal =  document.querySelector('.modal');
+const minimum_score = 30;
+const btnScore = document.getElementById("score");
+const btnPlay = document.getElementById("play-again");
+
 
 
 
@@ -56,9 +62,16 @@ function updateTimer() {
         remainingTime -= 1;
         time.textContent = remainingTime;
         console.log(userScore);
+        if (remainingTime == 30) {
+            addLucky();
+        }
+        if (remainingTime < 10) {
+            time.style.color = 'red';
+        }
     } else {
         clearInterval(interval);
-        time.textContent = "Time's up!";
+        board.style.display = 'none';
+        showResults();
     } 
 }
 
@@ -74,14 +87,20 @@ function hide(value){
     }, closeTime);
 }
 
+function addLucky(){
+    luckyInterval = setInterval(popUpLucky, 4500);
+    console.log("lucky" + luckyTime);
+}
+
 
 function startGame(){
+    time.textContent = '60';
     createContainers();
+    result_board.style.display = 'none';
     interval = setInterval(updateTimer, 1000);
     showTimer = setInterval(popUp,  popUpTime);
     speed = setInterval(updateSpeed, 15000);
     enemyPopUp = setInterval(updatePop, 10000);
-    halfGame = setInterval(addLucky, 30000);
 }
 
 function updateSpeed(){
@@ -92,9 +111,6 @@ function updatePop(){
     popUpTime = popUpTime- 350;
 }
 
-function addLucky(){
-    luckyInterval = setInterval(popUpLucky, 4500);
-}
 
 board.addEventListener('click', function (event) {
     const clickedElement = event.target;
@@ -138,3 +154,59 @@ function hideLucky(value){
 
 startGame();
 
+function showResults(){
+    modal.style.display = 'block';
+    clearIntervals();
+    result_board.style.display = 'flex';
+    score.innerHTML = `Your Score: ${userScore} `
+    let scores = JSON.parse(localStorage.getItem('scores')) || [];
+    scores.push(userScore);
+    scores.sort((a, b) => b - a);
+    scores = scores.slice(0, 10);
+    localStorage.setItem('scores', JSON.stringify(scores));
+
+    const bestScoreElement = document.querySelector('.best-score');
+    if (scores.length > 0) {
+        const bestScore = scores[0]; 
+        bestScoreElement.textContent = `Current Best Score: ${bestScore}`;
+
+        if(bestScore < userScore && userScore > minimum_score) {
+            statistics.textContent = `You win!`;
+        } else {
+            statistics.textContent = `YOU LOSE!`;
+        }
+    } else {
+        if (minimum_score < userScore) {
+            statistics.textContent = `You win!`;
+        } else {
+            statistics.textContent = `YOU LOSE!`;
+        }
+    }
+}
+   
+ 
+
+btnPlay.addEventListener('click', function(){
+      resetTimer();
+      startGame();
+      modal.style.display = 'none'
+      board.style.display = 'grid';
+});
+
+function resetTimer() {
+    popUpTime = 1500;
+    closeTime = 2500;
+    userScore = 0;
+    luckyTime = 3500;
+    statistics.textContent = '';
+    board.innerHTML = '';
+    time.style.color = '#FFFF00';
+}
+
+function clearIntervals(){
+    clearInterval(interval); 
+    clearInterval(showTimer);
+    clearInterval(speed);
+    clearInterval(enemyPopUp);
+    clearInterval(luckyInterval);
+}
