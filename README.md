@@ -1,12 +1,13 @@
 # Brooklyn Public Library Landing Page
 
-![Screenshot_1](https://github.com/nestserka/library/assets/78704791/30ad0449-624e-4479-8ac2-5960b34bde6c)
+![Screenshot_1](https://github.com/nestserka/library/assets/78704791/f7930b44-30df-457f-8459-403e29af8575)
+
 
 
 Welcome to the Brooklyn Public Library Landing Page project! This web application is designed to provide library patrons with a convenient way to access and manage their library cards, track their visit counts, and manage their bookshelf. The project is built using JavaScript, HTML, and CSS.
 
 ## Deploy
-
+https://nestserka.github.io/library/library/
 
 ## Table of Contents
 - Features
